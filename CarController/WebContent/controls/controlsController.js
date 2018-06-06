@@ -2,6 +2,11 @@ app.controller("controlsController", ControlsController);
 
 function ControlsController($scope) {
 	
+	$scope.startSender();
+	$scope.openSettings = function() {
+		$scope.setDriving(false);
+	}
+	
 	$scope.moveCallsLeft = 0;
 	$scope.moveCallsRight = 0;
 	$scope.onHammer = function (event, id, type, release) {

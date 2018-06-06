@@ -30,6 +30,7 @@
 		<script type="text/javascript" src="indexController.js"></script>
 		<script type="text/javascript" src="controls/controlsController.js"></script>
 		<script type="text/javascript" src="settings/settingsController.js"></script>
+		<script type="text/javascript" src="services/arduinoServices.js"></script>
 		
 		<!-- app -->
 		<md-content ng-if="isDriving" ng-controller="controlsController" flex layout="row">
@@ -42,9 +43,22 @@
 					</md-button>
 				</div>
 			</div>
-			<div flex="20" layout="column">
-				gas: {{gas}} <br>
-				steer: {{steer}}
+			<div flex="20" layout="column" layout-align="space-around center">
+				<md-button class="md-icon-button md-primary" ng-click="gearUp()">
+					<md-icon class="material-icons">add</md-icon>
+				</md-button>
+				<div layout="column" layout-align="center center">
+					<md-button class="md-icon-button md-primary" ng-click="openSettings()">
+						<md-icon class="material-icons">settings</md-icon>
+					</md-button>
+					<p style="color: red" ng-if="!isConnected">Non connesso</p>
+					<p style="color: green" ng-if="isConnected">Connesso</p>
+					{{speed}} rpm <br>
+					{{gear}} gear
+				</div>
+				<md-button class="md-icon-button md-primary" ng-click="gearDown()">
+					<md-icon class="material-icons">remove</md-icon>
+				</md-button>
 			</div>
 			<div flex="40" layout="column" id="steerContainer" layout-align="center center">
 				<md-button class="md-fab md-warn" hm-panmove="onHammer($event, 'steerButton', 'steer')" hm-panend="onHammer($event, 'steerButton', 'steer', true)" id="steerButton">
@@ -52,7 +66,33 @@
 				</md-button>
 			</div>
 		</md-content>
-		<md-content ng-if="!isDriving" ng-controller="settingsController" flex></md-content>
-		
+		<md-content ng-if="!isDriving" flex layout="row" layout-align="center center" ng-controller="settingsController">
+			<div layout-padding layout="row" flex style="height: 100%" ng-if="!isLoading">
+				<div layout="column" flex="45" layout-align="center center">
+					<md-input-container style="width: 100%;">
+		        		<label>Ip address</label>
+		        		<input ng-model="provIP">
+		      		</md-input-container>
+		      		<md-input-container style="width: 100%;">
+		        		<label>Port</label>
+		        		<input ng-model="provPort">
+		      		</md-input-container>
+		      		<div layout="row" layout-align="center center">
+		      			<md-button class="md-warn md-icon-button" ng-click="closeOptions()">
+			      			<md-icon class="material-icons">arrow_back</md-icon>
+			      		</md-button>
+			      		<md-button class="md-raised md-primary" ng-click="connect()">
+			      			<md-icon class="material-icons">wifi_tethering</md-icon>
+			      			Connect
+			      		</md-button>
+		      		</div>
+	      		</div>
+	      		<md-subheader flex="55" ng-if="!isConnected" class="md-primary">Connettiti per visualizzare le opzioni aggiuntive</md-subheader>
+	      		<div flex="55" ng-if="isConnected">
+	      			
+	      		</div>
+      		</div>
+      		<md-progress-circular ng-if="isLoading" md-mode="indeterminate"></md-progress-circular>
+		</md-content>
 	</body>
 </html>

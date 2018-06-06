@@ -1,15 +1,30 @@
 app.controller("indexController", IndexController);
 
-function IndexController($scope, $interval) {
+function IndexController($scope, $interval, arduinoService) {
 	
 	$scope.isDriving = true; //impostare su false per mostrare le impostazioni
+	$scope.setDriving = function(set) {
+		$scope.isDriving = set;
+	}
 	
-	$scope.isConnected = true;
-	$scope.carIP = "192.168.1.107";
+	$scope.isConnected = false;
+	$scope.setConnected = function(set) {
+		$scope.isConnected = set;
+	}
+	$scope.carIP = "";
+	$scope.carPort = "";
+	$scope.sender;
+	$scope.stopSender = function() {
+		$interval.cancel($scope.sender)
+	}
+	$scope.startSender = function() {
+		$scope.sender = $interval($scope.sendToCar, 100);
+	}
 	
 	$scope.gas = 0;
-	$scope.steer = 50;
+	$scope.steer = 0;
 	$scope.gear = 1;
+	$scope.speed = 0;
 	
 	$scope.Ox;
 	$scope.setOx = function(set) {
@@ -26,20 +41,68 @@ function IndexController($scope, $interval) {
 		return $scope.Oy;
 	}
 	
-	
-	$scope.sendToCar = function() {
-		if ($scope.isConnected && $scope.carIP != null) {
-			var Pgas = $("#gasButton").position().top;
-			var Psteer = $("#steerButton").position().left;
-			
-			//calcolo distanza dall'origine
-			var distGas = $scope.Oy - Pgas;
-			var distSteer = $scope.Ox - Psteer;
-			
-			$scope.gas = distGas;
-			$scope.steer = distSteer;
+	$scope.gearUp = function() {
+		if ($scope.gear + 1 <= 3) {
+			$scope.gear++;
+		}
+	}
+	$scope.gearDown = function() {
+		if ($scope.gear - 1 >= 1) {
+			$scope.gear--;
 		}
 	}
 	
-	$interval($scope.sendToCar, 100);
+	
+	$scope.sendToCar = function() {
+		if ($scope.isDrivig && $scope.isConnected && $scope.carIP != "" && $scope.carPort != "") {
+			var Pgas = $("#gasButton").position().top;
+			var Psteer = $("#steerButton").position().left;
+			//calcolo distanza dall'origine
+			var distGas = $scope.Oy - Pgas;
+			var distSteer = Psteer - $scope.Ox;
+			
+			if (isNaN(distGas)) {
+				distGas = 0;
+				$scope.gas = 0;
+			}
+			if (isNaN(distSteer)) {
+				distSteer = 0;
+				$scope.steer = 0;
+			}
+			//Assegnazione valore di gas
+			var maxGas = $scope.Oy-40;
+			if (isNaN($scope.Oy)) {
+				$scope.gas = 0;
+			} else {
+				if (distGas > maxGas) {
+					$scope.gas = 1;
+				} else if (distGas < 0) {
+					$scope.gas = 0;
+				} else {
+					$scope.gas = distGas/maxGas
+				}
+			}
+			$scope.gas = Number($scope.gas.toFixed(3));
+			//Assegnazione valore di sterzo
+			var maxSteer = ($("#steerContainer").outerWidth()-80)/2;
+			if (distSteer < -maxSteer) {
+				$scope.steer = -1;
+			} else if (distSteer > maxSteer) {
+				$scope.steer = 1;
+			} else {
+				$scope.steer = distSteer/maxSteer;
+			}
+			$scope.steer = Number($scope.steer.toFixed(3));
+			
+			//Richiesta alla macchina
+			arduinoService.drive($scope.carIP, $scope.carPort, $scope.gas*1000, $scope.steer, $scope.gear)
+				.then(function(response) {
+					$scope.speed = response.data.speed;
+				}, function(error) {
+					$scope.isConnected = false;
+					$scope.carIp = "";
+					$scope.carPort = "";
+				});
+		}
+	}
 }
