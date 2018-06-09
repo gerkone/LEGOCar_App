@@ -44,7 +44,7 @@
 				</div>
 			</div>
 			<div flex="20" layout="column" layout-align="space-around center">
-				<md-button class="md-icon-button md-primary" ng-click="gearUp()">
+				<md-button class="md-icon-button md-primary" hm-tap="doGear($event, 'up')">
 					<md-icon class="material-icons">add</md-icon>
 				</md-button>
 				<div layout="column" layout-align="center center">
@@ -56,7 +56,7 @@
 					{{speed}} rpm <br><br>
 					{{gear}}° gear
 				</div>
-				<md-button class="md-icon-button md-primary" ng-click="gearDown()">
+				<md-button class="md-icon-button md-primary" hm-tap="doGear($event, 'down')">
 					<md-icon class="material-icons">remove</md-icon>
 				</md-button>
 			</div>
@@ -95,14 +95,14 @@
 	      		<div layout-padding flex="55" ng-if="isConnected" layout="column" layout-align="space-around center">
 					<md-slider-container style="width: 100%">
 						<span>Gear speed up</span>
-						<md-slider min="10" max="360" ng-model="settings.gearSpeed.up" class="md-warn"></md-slider>
+						<md-slider min="0" max="100" ng-model="settings.gearSpeed.up" class="md-warn"></md-slider>
 						<md-input-container>
 							<input type="number" ng-model="settings.gearSpeed.up">
 						</md-input-container>
 					</md-slider-container>
 					<md-slider-container style="width: 100%">
 						<span>Gear speed down</span>
-						<md-slider min="10" max="120" ng-model="settings.gearSpeed.down" class="md-warn"></md-slider>
+						<md-slider min="0" max="100" ng-model="settings.gearSpeed.down" class="md-warn"></md-slider>
 						<md-input-container>
 							<input type="number" ng-model="settings.gearSpeed.down">
 						</md-input-container>

@@ -8,7 +8,7 @@ function SettingsController($scope, $mdToast, arduinoService) {
 			provPort: $scope.carPort
 	}
 	$scope.settings = {
-			gearSpeed: {up: 360, down: 120},
+			gearSpeed: {up: 100, down: 50},
 			steerCorrector: 100
 	}
 	

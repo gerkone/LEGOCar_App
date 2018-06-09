@@ -54,7 +54,7 @@ function ControlsController($scope) {
 			$("#"+id).animate({ 
 				top: "0px",
 				left: "0px"
-			},  400);
+			},  1000);
 			
 		}
 		

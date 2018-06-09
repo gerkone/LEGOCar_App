@@ -24,7 +24,7 @@ function IndexController($scope, $interval, arduinoService) {
 		$interval.cancel($scope.sender)
 	}
 	$scope.startSender = function() {
-		$scope.sender = $interval($scope.sendToCar, 100);
+		$scope.sender = $interval($scope.sendToCar, 10000);
 	}
 	
 	$scope.gas = 0;
@@ -50,20 +50,22 @@ function IndexController($scope, $interval, arduinoService) {
 		return $scope.Oy;
 	}
 	
-	$scope.gearUp = function() {
-		if ($scope.gear + 1 <= 3) {
-			$scope.gear++;
+	$scope.doGear = function(event, gear) {
+		
+		if (gear == "up") {
+			if ($scope.gear + 1 <= 3) {
+				$scope.gear++;
+			}
+		} else if (gear == "down") {
+			if ($scope.gear - 1 >= 1) {
+				$scope.gear--;
+			}
 		}
+		
 	}
-	$scope.gearDown = function() {
-		if ($scope.gear - 1 >= 1) {
-			$scope.gear--;
-		}
-	}
-	
 	
 	$scope.sendToCar = function() {
-		if ($scope.isDrivig && $scope.isConnected && $scope.carIP != "" && $scope.carPort != "") {
+		if ($scope.isDriving && $scope.isConnected && $scope.carIP != "" && $scope.carPort != "") {
 			var Pgas = $("#gasButton").position().top;
 			var Psteer = $("#steerButton").position().left;
 			//calcolo distanza dall'origine
