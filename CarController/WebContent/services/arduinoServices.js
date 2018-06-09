@@ -15,6 +15,19 @@ function ArduinoService($q, $http) {
 		 });
 	}
 	
+	this.save = function(ip, port, settings) {
+		
+		return $http({
+		    url: "http://"+ip+":"+port+"/setupCar", 
+		    method: "GET",
+		    params: {
+		    	gsu: settings.gearSpeed.up,
+		    	gsd: settings.gearSpeed.down,
+		    	sc: settings.steerCorrector
+		    }
+		 });
+	}
+	
 	this.check = function(ip, port) {
 		if (port != "none") {
 			return $http({

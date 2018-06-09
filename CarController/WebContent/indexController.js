@@ -13,6 +13,12 @@ function IndexController($scope, $interval, arduinoService) {
 	}
 	$scope.carIP = "";
 	$scope.carPort = "";
+	$scope.setCarIP = function(set) {
+		$scope.carIP = set;
+	}
+	$scope.setCarPort = function(set) {
+		$scope.carPort = set;
+	}
 	$scope.sender;
 	$scope.stopSender = function() {
 		$interval.cancel($scope.sender)
@@ -25,6 +31,9 @@ function IndexController($scope, $interval, arduinoService) {
 	$scope.steer = 0;
 	$scope.gear = 1;
 	$scope.speed = 0;
+	$scope.setSpeed = function(set) {
+		$scope.speed = set;
+	}
 	
 	$scope.Ox;
 	$scope.setOx = function(set) {
@@ -97,7 +106,7 @@ function IndexController($scope, $interval, arduinoService) {
 			//Richiesta alla macchina
 			arduinoService.drive($scope.carIP, $scope.carPort, $scope.gas*1000, $scope.steer, $scope.gear)
 				.then(function(response) {
-					$scope.speed = response.data.speed;
+					$scope.setSpeed(response.data.speed);
 				}, function(error) {
 					$scope.isConnected = false;
 					$scope.carIp = "";
