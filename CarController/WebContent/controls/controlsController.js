@@ -1,8 +1,7 @@
 app.controller("controlsController", ControlsController);
 
-function ControlsController($scope) {
+function ControlsController($scope, $timeout) {
 	
-	$scope.startSender();
 	$scope.openSettings = function() {
 		$scope.setDriving(false);
 	}
@@ -57,8 +56,9 @@ function ControlsController($scope) {
 			},  1000);
 			
 		}
-		
 	}
+	
+	$timeout($scope.sendToCar, 200);
 	
 	
 }

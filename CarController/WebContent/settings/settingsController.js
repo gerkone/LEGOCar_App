@@ -12,8 +12,6 @@ function SettingsController($scope, $mdToast, arduinoService) {
 			steerCorrector: 100
 	}
 	
-	$scope.stopSender();
-	
 	$scope.closeOptions = function() {
 		$scope.setDriving(true);
 	}
@@ -68,6 +66,9 @@ function SettingsController($scope, $mdToast, arduinoService) {
 				}
 			}, function(error) {
 				$scope.isLoading = false;
+//				$scope.setConnected(true); //da eliminare prima di buildare
+//				$scope.setCarIP($scope.prov.provIP);
+//				$scope.setCarPort($scope.prov.provPort);
 				$mdToast.show(
 						$mdToast.simple()
 						.textContent('La macchina non è su questo indirizzo!')
