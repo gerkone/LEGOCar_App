@@ -53,7 +53,7 @@ function ControlsController($scope, $timeout) {
 			$("#"+id).animate({ 
 				top: "0px",
 				left: "0px"
-			},  1000);
+			},  300);
 			
 		}
 	}
