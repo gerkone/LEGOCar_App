@@ -1,2 +1,2 @@
 # LEGOCar_App
-A mobile app to control the speed record breaker LEGO car
+A mobile app for Android to control our LEGO car.
