@@ -28,9 +28,18 @@
 		
 		<!-- controllers -->
 		<script type="text/javascript" src="indexController.js"></script>
+		<script type="text/javascript" src="startingScreen/startingScreenController.js"></script>
 		
 		<!-- app -->
-		
+		<md-content flex ng-if="startScreenActive" id="startingScreen" layout="column" ng-controller="startingScreenController">
+			<div flex="50" id="logoDiv" layout="column" layout-align="center center">
+				<img flex="80" src="images/logo.png"/>
+			</div>
+			<div flex="50" id="buttonDiv" layout="column" layout-align="center center">
+				<md-button class="md-raised md-warn" ng-if="!loading" hm-tap="begin">Begin</md-button>
+				<md-progress-circular md-mode="indeterminate" class="md-warn" ng-if="loading"></md-progress-circular>
+			</div>
+		</md-content>
 		
 	</body>
 </html>
