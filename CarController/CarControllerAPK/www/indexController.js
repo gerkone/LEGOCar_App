@@ -16,4 +16,8 @@ function IndexController($scope) {
 	$scope.getControlsScreenActive = function() { return $scope.controlsScreenActive }
 	$scope.setControlsScreenActive = function(set) { $scope.controlsScreenActive = set }
 	
+	$scope.connected = false;
+	$scope.getConnected = function() { return $scope.connected }
+	$scope.setConnected = function(set) { $scope.connected = set }
+	
 }

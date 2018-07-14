@@ -36,6 +36,7 @@
 		<!-- controllers -->
 		<script type="text/javascript" src="indexController.js"></script>
 		<script type="text/javascript" src="startingScreen/startingScreenController.js"></script>
+		<script type="text/javascript" src="settingsScreen/settingsScreenController.js"></script>
 		
 		<!-- start screen -->
 		<md-content flex ng-if="startScreenActive" id="startingScreen" layout="column" ng-controller="startingScreenController">
@@ -49,7 +50,20 @@
 		</md-content>
 		<!-- settings screen -->
 		<md-content flex layout="row" ng-controller="settingsScreenController" id="settingsScreen" ng-if="settingsScreenActive">
-			
+			<!-- caricamento -->
+			<md-content flex ng-if="loading" layout="row" layout-align="center center">
+				<md-progress-circular md-mode="indeterminate" class="md-primary"></md-progress-circular>
+			</md-content>
+			<!-- se non connesso -->
+			<md-content flex ng-if="!connected && !loading" layout="column">
+				<md-subheader flex class="md-primary">
+					<md-button style="margin: 0px;" class="md-primary" ng-if="availableNetworks.length==0" ng-click="startScan()">Cerca reti<md-icon class="material-icons">sync</md-icon></md-button>
+				</md-subheader>
+			</md-content>
+			<!-- se connesso -->
+			<md-content ng-if="connected && !loading">
+				
+			</md-content>
 		</md-content>
 		
 		
