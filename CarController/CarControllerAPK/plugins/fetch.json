@@ -7,20 +7,12 @@
     "is_top_level": true,
     "variables": {}
   },
-  "wifiwizard2": {
+  "com.pylonproducts.wifiwizard": {
     "source": {
       "type": "registry",
-      "id": "wifiwizard2@3.0.0"
+      "id": "wifiwizard@^0.2.11"
     },
     "is_top_level": true,
-    "variables": {}
-  },
-  "es6-promise-plugin": {
-    "source": {
-      "type": "registry",
-      "id": "es6-promise-plugin@4.1.0"
-    },
-    "is_top_level": false,
     "variables": {}
   },
   "cordova-plugin-screen-orientation": {
@@ -29,6 +21,14 @@
       "id": "cordova-plugin-screen-orientation"
     },
     "is_top_level": true,
+    "variables": {}
+  },
+  "es6-promise-plugin": {
+    "source": {
+      "type": "registry",
+      "id": "es6-promise-plugin@^4.1.0"
+    },
+    "is_top_level": false,
     "variables": {}
   },
   "cordova-plugin-fullscreen": {

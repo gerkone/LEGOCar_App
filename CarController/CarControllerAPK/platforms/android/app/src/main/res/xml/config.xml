@@ -4,8 +4,8 @@
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
     </feature>
-    <feature name="WifiWizard2">
-        <param name="android-package" value="wifiwizard2.WifiWizard2" />
+    <feature name="WifiWizard">
+        <param name="android-package" value="com.pylonproducts.wifiwizard.WifiWizard" />
         <param name="onload" value="true" />
     </feature>
     <feature name="CDVOrientation">

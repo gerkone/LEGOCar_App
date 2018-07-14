@@ -15,13 +15,13 @@
     "cordova-plugin-fullscreen": "^1.2.0",
     "cordova-plugin-screen-orientation": "^3.0.1",
     "cordova-plugin-whitelist": "^1.3.3",
-    "es6-promise-plugin": "^4.1.0",
-    "wifiwizard2": "^3.0.0"
+    "es6-promise-plugin": "^4.2.2",
+    "wifiwizard": "^0.2.11"
   },
   "cordova": {
     "plugins": {
       "cordova-plugin-whitelist": {},
-      "wifiwizard2": {},
+      "com.pylonproducts.wifiwizard": {},
       "cordova-plugin-screen-orientation": {},
       "cordova-plugin-fullscreen": {}
     },

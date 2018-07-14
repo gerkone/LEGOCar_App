@@ -1,17 +1,11 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
     {
-        "file": "plugins/es6-promise-plugin/www/promise.js",
-        "id": "es6-promise-plugin.Promise",
-        "pluginId": "es6-promise-plugin",
-        "runs": true
-    },
-    {
-        "file": "plugins/wifiwizard2/www/WifiWizard2.js",
-        "id": "wifiwizard2.WifiWizard2",
-        "pluginId": "wifiwizard2",
+        "file": "plugins/com.pylonproducts.wifiwizard/www/WifiWizard.js",
+        "id": "com.pylonproducts.wifiwizard.WifiWizard",
+        "pluginId": "com.pylonproducts.wifiwizard",
         "clobbers": [
-            "window.WifiWizard2"
+            "window.WifiWizard"
         ]
     },
     {
@@ -35,8 +29,7 @@ module.exports.metadata =
 // TOP OF METADATA
 {
     "cordova-plugin-whitelist": "1.3.3",
-    "es6-promise-plugin": "4.1.0",
-    "wifiwizard2": "3.0.0",
+    "com.pylonproducts.wifiwizard": "0.2.11",
     "cordova-plugin-screen-orientation": "3.0.1",
     "cordova-plugin-fullscreen": "1.1.0"
 }

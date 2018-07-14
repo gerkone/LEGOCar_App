@@ -10,6 +10,8 @@
 		<link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css">
 		<!-- All material icons -->
 		<link rel="stylesheet" href="googleFont/materialIcons.css">
+		
+		<script type="text/javascript" src="cordova.js"></script>
 	</head>
 	<body ng-app="LegoCarApp" ng-cloak style="overflow:hidden;" layout="column" ng-controller="indexController">
 	
@@ -26,17 +28,20 @@
 		<script type="text/javascript" src="node_modules/angular-hammer/angular.hammer.js"></script>
 		<script type="text/javascript" src="app.js"></script>
 		
+		<!-- plugins -->
+		<script type="text/javascript" src="plugins/WifiWizard.js"></script>
+		
 		<!-- controllers -->
 		<script type="text/javascript" src="indexController.js"></script>
 		<script type="text/javascript" src="startingScreen/startingScreenController.js"></script>
 		
 		<!-- app -->
 		<md-content flex ng-if="startScreenActive" id="startingScreen" layout="column" ng-controller="startingScreenController">
-			<div flex="50" id="logoDiv" layout="column" layout-align="center center">
-				<img flex="80" src="images/logo.png"/>
+			<div flex="75" id="logoDiv" layout="column" layout-align="center center">
+				<img flex="75" src="images/logo.png"/>
 			</div>
-			<div flex="50" id="buttonDiv" layout="column" layout-align="center center">
-				<md-button class="md-raised md-warn" ng-if="!loading" hm-tap="begin">Begin</md-button>
+			<div flex="35" id="buttonDiv" layout="column" layout-align="center center">
+				<md-button class="md-raised md-warn" ng-if="!loading" hm-tap="begin($event)">Begin</md-button>
 				<md-progress-circular md-mode="indeterminate" class="md-warn" ng-if="loading"></md-progress-circular>
 			</div>
 		</md-content>

@@ -10,7 +10,7 @@
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "it.tessaro.CarController"
     },
-    "wifiwizard2": {
+    "com.pylonproducts.wifiwizard": {
       "PACKAGE_NAME": "it.tessaro.CarController"
     },
     "cordova-plugin-screen-orientation": {
@@ -20,9 +20,5 @@
       "PACKAGE_NAME": "it.tessaro.CarController"
     }
   },
-  "dependent_plugins": {
-    "es6-promise-plugin": {
-      "PACKAGE_NAME": "it.tessaro.CarController"
-    }
-  }
+  "dependent_plugins": {}
 }
