@@ -12,6 +12,7 @@
 		<link rel="stylesheet" href="googleFont/materialIcons.css">
 		
 		<script type="text/javascript" src="cordova.js"></script>
+		
 	</head>
 	<body ng-app="LegoCarApp" ng-cloak style="overflow:hidden;" layout="column" ng-controller="indexController">
 	
@@ -30,14 +31,13 @@
 		
 		<!-- plugins -->
 		<script type="text/javascript" src="plugins/WifiWizard.js"></script>
-		<script type="text/javascript" src="plugins/AndroidFullScreen.js"></script>
 		<script type="text/javascript" src="plugins/screenorientation.js"></script>
 		
 		<!-- controllers -->
 		<script type="text/javascript" src="indexController.js"></script>
 		<script type="text/javascript" src="startingScreen/startingScreenController.js"></script>
 		
-		<!-- app -->
+		<!-- start screen -->
 		<md-content flex ng-if="startScreenActive" id="startingScreen" layout="column" ng-controller="startingScreenController">
 			<div flex="75" id="logoDiv" layout="column" layout-align="center center">
 				<img flex="75" src="images/logo.png"/>
@@ -47,6 +47,11 @@
 				<md-progress-circular md-mode="indeterminate" class="md-warn" ng-if="loading"></md-progress-circular>
 			</div>
 		</md-content>
+		<!-- settings screen -->
+		<md-content flex layout="row" ng-controller="settingsScreenController" id="settingsScreen" ng-if="settingsScreenActive">
+			
+		</md-content>
+		
 		
 	</body>
 </html>

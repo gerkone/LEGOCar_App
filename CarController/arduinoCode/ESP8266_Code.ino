@@ -2,7 +2,7 @@
 #include <WiFiClient.h>
 #include <ESP8266WebServer.h>
 
-const char* ssid = "Lego Car";
+const char* ssid = "Lego_Car";
 const char* password = "VincioGay";
 
 int cont=0;

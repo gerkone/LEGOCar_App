@@ -23,9 +23,10 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
+    <preference name="Fullscreen" value="true" />
     <plugin name="com.pylonproducts.wifiwizard" spec="~0.2.11" />
-    <engine name="android" spec="^7.0.0" />
-    <engine name="browser" spec="^5.0.3" />
     <plugin name="cordova-plugin-screen-orientation" spec="^3.0.1" />
     <plugin name="cordova-plugin-fullscreen" spec="^1.2.0" />
+    <engine name="android" spec="^7.0.0" />
+    <engine name="browser" spec="^5.0.3" />
 </widget>

@@ -12,13 +12,21 @@ function startingScreenController($scope, $timeout) {
 		WifiWizard.formatWPAConfig("JENIA-DL", "antepo71!fama");
 		WifiWizard.connectNetwork("JENIA-DL", function() {
 			$timeout(function() {
-				$scope.setLoading(false);
+				window.screen.orientation.unlock();
+				window.screen.orientation.lock("landscape");
+				$scope.setStartScreenActive(false);
+				$scope.setSettingsScreenActive(false);
+				$scope.setControlsScreenActive(true);
 			}, 100)
 		}, function() {
 			$timeout(function() {
-				$scope.setLoading(false);
+				window.screen.orientation.unlock();
+				window.screen.orientation.lock("landscape");
+				$scope.setStartScreenActive(false);
+				$scope.setSettingsScreenActive(true);
+				$scope.setControlsScreenActive(false);
 			}, 100)
 		});
-		
+		$scope.setLoading(false);
 	}
 }

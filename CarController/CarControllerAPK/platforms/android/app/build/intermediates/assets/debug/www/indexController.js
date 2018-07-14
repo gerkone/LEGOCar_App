@@ -2,6 +2,8 @@ app.controller("indexController", IndexController);
 
 function IndexController($scope) {
 	
+	window.screen.orientation.lock("portrait");
+	
 	$scope.startScreenActive = true;
 	$scope.getStartScreenActive = function() { return $scope.startScreenActive }
 	$scope.setStartScreenActive = function(set) { $scope.startScreenActive = set}
