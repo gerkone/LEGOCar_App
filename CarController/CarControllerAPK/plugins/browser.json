@@ -1,0 +1,28 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "it.tessaro.CarController"
+    },
+    "wifiwizard2": {
+      "PACKAGE_NAME": "it.tessaro.CarController"
+    },
+    "cordova-plugin-screen-orientation": {
+      "PACKAGE_NAME": "it.tessaro.CarController"
+    },
+    "cordova-plugin-fullscreen": {
+      "PACKAGE_NAME": "it.tessaro.CarController"
+    }
+  },
+  "dependent_plugins": {
+    "es6-promise-plugin": {
+      "PACKAGE_NAME": "it.tessaro.CarController"
+    }
+  }
+}

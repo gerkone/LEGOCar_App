@@ -1,0 +1,11 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "CarController",
+  "short_name": "CarController",
+  "version": "it.tessaro.CarController",
+  "description": "A controller app for the lego record breaking car.",
+  "author": "Fabio Tessaro",
+  "icons": [],
+  "start_url": "index.html"
+}
