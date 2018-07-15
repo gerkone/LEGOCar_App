@@ -17,7 +17,6 @@ function startingScreenController($scope, $timeout, $interval, localStorageServi
 					$scope.waitForConnection();
 					$scope.tries++;
 				} else if (SSID != '\"'+$scope.defaultKeys.SSID+'\"' && $scope.tries > 150) {
-					//messaggio di connection_error_timeout
 					window.screen.orientation.unlock();
 					window.screen.orientation.lock("landscape");
 					$scope.setStartScreenActive(false);
@@ -25,6 +24,7 @@ function startingScreenController($scope, $timeout, $interval, localStorageServi
 					$scope.setConnected(false);
 					$scope.setControlsScreenActive(false);
 					$scope.setLoading(false);
+					$scope.showSimpleToast("Non riesco a connettermi! Scegli la rete manualmente");
 				} else {
 					//TODO fare il check con arduino
 					window.screen.orientation.unlock();
@@ -36,7 +36,11 @@ function startingScreenController($scope, $timeout, $interval, localStorageServi
 					$scope.setLoading(false);
 				}
 			}, 100, false, SSID);
-		}, null);
+		}, function() {
+			$timeout(function() {
+				$scope.showSimpleToast("Non riesco ad ottenere l'SSID corrente");
+			})
+		});
 	}
 	
 	$scope.begin = function(event) {
@@ -50,10 +54,11 @@ function startingScreenController($scope, $timeout, $interval, localStorageServi
 				$scope.setConnected(false);
 				$scope.setControlsScreenActive(false);
 				$scope.setLoading(false);
+				$scope.showSimpleToast("Configurazioni di default non trovate!");
 			}, 3219)
 		} else {
 			//trovo le chiavi di default, provo a connettermi automagicamente
-			WifiWizard.formatWPAConfig($scope.defaultKeys.SSID, $scope.defaultKeys.PWD);
+			WifiWizard.addNetwork(WifiWizard.formatWPAConfig($scope.defaultKeys.SSID, $scope.defaultKeys.PWD), null, null);
 			WifiWizard.connectNetwork($scope.defaultKeys.SSID, function() {
 				//chiamo la funzione per aspettare che mi sono connesso
 				$timeout(function() {
@@ -61,14 +66,16 @@ function startingScreenController($scope, $timeout, $interval, localStorageServi
 					$scope.tries++;
 				}, 100);
 			}, function() {
-				//non riesco a connettermi e quindi apro la pagina delle impostazioni
-				window.screen.orientation.unlock();
-				window.screen.orientation.lock("landscape");
-				$scope.setStartScreenActive(false);
-				$scope.setConnected(false);
-				$scope.setSettingsScreenActive(true);
-				$scope.setControlsScreenActive(false);
-				$scope.setLoading(false);
+				$timeout(function() {
+					window.screen.orientation.unlock();
+					window.screen.orientation.lock("landscape");
+					$scope.setStartScreenActive(false);
+					$scope.setConnected(false);
+					$scope.setSettingsScreenActive(true);
+					$scope.setControlsScreenActive(false);
+					$scope.setLoading(false);
+					$scope.showSimpleToast("Connessione fallita! Scegli la rete manualmente");
+				}, 100)
 			});
 		}
 	}

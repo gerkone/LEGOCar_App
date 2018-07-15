@@ -94,23 +94,6 @@ addScreenOrientationApi(screen.orientation);
 
 var onChangeListener = null;
 
-Object.defineProperty(screen.orientation, 'onchange', {
-    set: function(listener) {
-
-        if (onChangeListener) {
-            screen.orientation.removeEventListener('change', onChangeListener);
-        }
-        onChangeListener = listener;
-        if (onChangeListener) {
-            screen.orientation.addEventListener('change', onChangeListener);
-        }
-    },
-    get: function() {
-        return (onChangeListener ? onChangeListener : null);
-    },
-    enumerable: true,
-});
-
 
 var evtTarget = new XMLHttpRequest(); //document.createElement('div');
 var orientationchange = function() {

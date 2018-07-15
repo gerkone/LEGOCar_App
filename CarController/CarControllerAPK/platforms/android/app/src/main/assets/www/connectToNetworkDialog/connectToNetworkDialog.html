@@ -1,0 +1,38 @@
+<md-dialog flex layout="column">
+	<md-toolbar>
+   	<div class="md-toolbar-tools">
+        <h2>Connessione a: "{{network.SSID}}"</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" hm-tap="cancel($event)">
+        	<md-icon class="material-icons">close</md-icon>
+        </md-button>
+     	</div>
+   	</md-toolbar>
+   	
+   	<md-dialog-content layout="row" flex ng-if="!loading">
+	    <div flex class="md-dialog-content" layout="column">
+	    	<p>Protezione: {{protectionSystem}}</p>
+		    <md-input-container class="md-block" style="width: 100%">
+	            <label>Password</label>
+	            <input ng-attr-type="{{ showPassword ? 'text' : 'password' }}" ng-model="network.PWD">
+          	</md-input-container>
+          	<md-checkbox ng-model="showPassword">
+            Mostra la password
+          	</md-checkbox>
+          	<md-checkbox ng-model="setAsFavorite">
+            Segna come predefinito
+          	</md-checkbox>
+	    </div>
+    </md-dialog-content>
+    <md-dialog-content layout="row" layout-align="center center" flex ng-if="loading">
+    	<md-progress-circular md-mode="indeterminate" class="md-primary"></md-progress-circular>
+    </md-dialog-content>
+    
+   	<md-dialog-actions layout="row"ng-if="!loading">
+   		<span flex></span>
+    	<md-button class="md-raised md-primary" hm-tap="tryToConnect($event)">
+    		Connetti
+    		<md-icon class="material-icons">done</md-icon>
+    	</md-button>
+    </md-dialog-actions>
+</md-dialog>

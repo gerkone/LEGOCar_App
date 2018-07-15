@@ -7,14 +7,6 @@
     "is_top_level": true,
     "variables": {}
   },
-  "com.pylonproducts.wifiwizard": {
-    "source": {
-      "type": "registry",
-      "id": "wifiwizard@^0.2.11"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
   "cordova-plugin-screen-orientation": {
     "source": {
       "type": "registry",
@@ -31,10 +23,18 @@
     "is_top_level": false,
     "variables": {}
   },
-  "cordova-plugin-fullscreen": {
+  "com.pylonproducts.wifiwizard": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-fullscreen"
+      "id": "wifiwizard@^0.2.11"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-android-permissions": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-android-permissions"
     },
     "is_top_level": true,
     "variables": {}

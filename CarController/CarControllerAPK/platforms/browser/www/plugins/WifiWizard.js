@@ -291,5 +291,3 @@ var WifiWizard = {
         cordova.exec(win, fail, 'WifiWizard', 'setWifiEnabled', [enabled]);
     }
 };
-
-module.exports = WifiWizard;
