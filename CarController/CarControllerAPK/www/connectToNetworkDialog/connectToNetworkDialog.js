@@ -1,6 +1,6 @@
 app.controller("connectToNetworkController", connectToNetworkController);
 
-function connectToNetworkController($scope, $mdDialog, $timeout, $mdToast, network) {
+function connectToNetworkController($scope, $mdDialog, $timeout, $mdToast, arduinoService, network) {
 	
 	$scope.network = network;
 	$scope.showPassword = false;
@@ -23,14 +23,36 @@ function connectToNetworkController($scope, $mdDialog, $timeout, $mdToast, netwo
 					$scope.showSimpleToast("Non riesco a connettermi! Scegli la rete manualmente");
 				} else {
 					//se va tutto bene
-					//TODO fare il check con arduino
-					$scope.loading = false;
-					$mdToast.show(
+					arduinoService.check().then(function(response) {
+						if (response.data == "OK") {
+							$scope.loading = false;
+							$mdDialog.hide(true);
+							$mdToast.show(
+								$mdToast.simple()
+									.textContent("Connesso!")
+								    .position("top right")
+								    .hideDelay(3000)
+							);
+						} else {
+							$scope.loading = false;
+							$mdDialog.hide(false);
+							$mdToast.show(
+								$mdToast.simple()
+									.textContent("Arduino non è su questa rete wifi!")
+								    .position("top right")
+								    .hideDelay(3000)
+							);
+						}
+					}, function(response) {
+						$scope.loading = false;
+						$mdDialog.hide(false);
+						$mdToast.show(
 							$mdToast.simple()
-								.textContent("Connesso!")
+								.textContent("Arduino non è su questa rete wifi o c'è stato un'errore!")
 							    .position("top right")
 							    .hideDelay(3000)
-					);
+						);
+					})
 				}
 			}, 100, false, SSID);
 		}, function(a) {

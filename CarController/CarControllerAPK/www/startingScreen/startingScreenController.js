@@ -1,6 +1,6 @@
 app.controller("startingScreenController", startingScreenController);
 
-function startingScreenController($scope, $timeout, $interval, localStorageService) {
+function startingScreenController($scope, $timeout, $interval, localStorageService, arduinoService) {
 	
 	$scope.loading = false;
 	$scope.getLoading = function() { return $scope.loading }
@@ -26,14 +26,35 @@ function startingScreenController($scope, $timeout, $interval, localStorageServi
 					$scope.setLoading(false);
 					$scope.showSimpleToast("Non riesco a connettermi! Scegli la rete manualmente");
 				} else {
-					//TODO fare il check con arduino
-					window.screen.orientation.unlock();
-					window.screen.orientation.lock("landscape");
-					$scope.setStartScreenActive(false);
-					$scope.setSettingsScreenActive(false);
-					$scope.setConnected(true);
-					$scope.setControlsScreenActive(true);
-					$scope.setLoading(false);
+					arduinoService.check().then(function(response) {
+						if (response.data == "OK") {
+							window.screen.orientation.unlock();
+							window.screen.orientation.lock("landscape");
+							$scope.setStartScreenActive(false);
+							$scope.setSettingsScreenActive(false);
+							$scope.setConnected(true);
+							$scope.setControlsScreenActive(true);
+							$scope.setLoading(false);
+						} else {
+							window.screen.orientation.unlock();
+							window.screen.orientation.lock("landscape");
+							$scope.setStartScreenActive(false);
+							$scope.setSettingsScreenActive(true);
+							$scope.setConnected(false);
+							$scope.setControlsScreenActive(false);
+							$scope.setLoading(false);
+							$scope.showSimpleToast("Arduino non è su questa rete");
+						}
+					}, function(response) {
+						window.screen.orientation.unlock();
+						window.screen.orientation.lock("landscape");
+						$scope.setStartScreenActive(false);
+						$scope.setSettingsScreenActive(true);
+						$scope.setConnected(false);
+						$scope.setControlsScreenActive(false);
+						$scope.setLoading(false);
+						$scope.showSimpleToast("Arduino non è su questa rete o c'è stato un'errore");
+					})
 				}
 			}, 100, false, SSID);
 		}, function() {
@@ -58,24 +79,34 @@ function startingScreenController($scope, $timeout, $interval, localStorageServi
 			}, 3219)
 		} else {
 			//trovo le chiavi di default, provo a connettermi automagicamente
-			WifiWizard.addNetwork(WifiWizard.formatWPAConfig($scope.defaultKeys.SSID, $scope.defaultKeys.PWD), null, null);
-			WifiWizard.connectNetwork($scope.defaultKeys.SSID, function() {
-				//chiamo la funzione per aspettare che mi sono connesso
-				$timeout(function() {
-					$scope.waitForConnection();
-					$scope.tries++;
-				}, 100);
+			WifiWizard.addNetwork(WifiWizard.formatWPAConfig($scope.defaultKeys.SSID, $scope.defaultKeys.PWD), function() {
+				WifiWizard.connectNetwork($scope.defaultKeys.SSID, function() {
+					//chiamo la funzione per aspettare che mi sono connesso
+					$timeout(function() {
+						$scope.waitForConnection();
+						$scope.tries++;
+					}, 100);
+				}, function() {
+					$timeout(function() {
+						window.screen.orientation.unlock();
+						window.screen.orientation.lock("landscape");
+						$scope.setStartScreenActive(false);
+						$scope.setConnected(false);
+						$scope.setSettingsScreenActive(true);
+						$scope.setControlsScreenActive(false);
+						$scope.setLoading(false);
+						$scope.showSimpleToast("Connessione fallita! Scegli la rete manualmente");
+					}, 100)
+				});
 			}, function() {
-				$timeout(function() {
-					window.screen.orientation.unlock();
-					window.screen.orientation.lock("landscape");
-					$scope.setStartScreenActive(false);
-					$scope.setConnected(false);
-					$scope.setSettingsScreenActive(true);
-					$scope.setControlsScreenActive(false);
-					$scope.setLoading(false);
-					$scope.showSimpleToast("Connessione fallita! Scegli la rete manualmente");
-				}, 100)
+				window.screen.orientation.unlock();
+				window.screen.orientation.lock("landscape");
+				$scope.setStartScreenActive(false);
+				$scope.setConnected(false);
+				$scope.setSettingsScreenActive(true);
+				$scope.setControlsScreenActive(false);
+				$scope.setLoading(false);
+				$scope.showSimpleToast("Non riesco ad aggiungere la rete di default");
 			});
 		}
 	}
