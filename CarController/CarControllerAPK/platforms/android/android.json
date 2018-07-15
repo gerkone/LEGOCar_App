@@ -20,6 +20,12 @@
               "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
               "count": 1
             }
+          ],
+          "/*": [
+            {
+              "xml": "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\" />",
+              "count": 1
+            }
           ]
         }
       },
@@ -41,6 +47,10 @@
             {
               "xml": "<feature name=\"Permissions\"><param name=\"android-package\" value=\"com.android.plugins.Permissions\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"networkinterface\"><param name=\"android-package\" value=\"com.albahra.plugin.networkinterface.networkinterface\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -61,6 +71,9 @@
       "PACKAGE_NAME": "it.tessaro.CarController"
     },
     "cordova-plugin-android-permissions": {
+      "PACKAGE_NAME": "it.tessaro.CarController"
+    },
+    "cordova-plugin-networkinterface": {
       "PACKAGE_NAME": "it.tessaro.CarController"
     }
   },
@@ -95,6 +108,14 @@
       "clobbers": [
         "cordova.plugins.permissions"
       ]
+    },
+    {
+      "id": "cordova-plugin-networkinterface.networkinterface",
+      "file": "plugins/cordova-plugin-networkinterface/www/networkinterface.js",
+      "pluginId": "cordova-plugin-networkinterface",
+      "clobbers": [
+        "window.networkinterface"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -102,6 +123,7 @@
     "es6-promise-plugin": "4.2.2",
     "cordova-plugin-screen-orientation": "3.0.1",
     "com.pylonproducts.wifiwizard": "0.2.11",
-    "cordova-plugin-android-permissions": "1.0.0"
+    "cordova-plugin-android-permissions": "1.0.0",
+    "cordova-plugin-networkinterface": "2.0.0"
   }
 }

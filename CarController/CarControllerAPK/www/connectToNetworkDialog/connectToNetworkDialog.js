@@ -22,8 +22,9 @@ function connectToNetworkController($scope, $mdDialog, $timeout, $mdToast, ardui
 					$scope.loading = false;
 					$scope.showSimpleToast("Non riesco a connettermi! Scegli la rete manualmente");
 				} else {
-					//se va tutto bene
-					arduinoService.check().then(function(response) {
+					//se va tutto bene controlla se il wifi è di arduino
+					var promise = arduinoService.check();
+					promise.then(function(response) {
 						if (response.data == "OK") {
 							$scope.loading = false;
 							$mdDialog.hide(true);
@@ -43,7 +44,7 @@ function connectToNetworkController($scope, $mdDialog, $timeout, $mdToast, ardui
 								    .hideDelay(3000)
 							);
 						}
-					}, function(response) {
+					}, function(reason) {
 						$scope.loading = false;
 						$mdDialog.hide(false);
 						$mdToast.show(

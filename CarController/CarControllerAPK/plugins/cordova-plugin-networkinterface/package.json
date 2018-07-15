@@ -1,0 +1,110 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "cordova-plugin-networkinterface",
+        "scope": null,
+        "escapedName": "cordova-plugin-networkinterface",
+        "name": "cordova-plugin-networkinterface",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "C:\\Users\\Fabio\\git\\LEGOCar_App\\CarController\\CarControllerAPK"
+    ]
+  ],
+  "_from": "cordova-plugin-networkinterface@latest",
+  "_id": "cordova-plugin-networkinterface@2.0.0",
+  "_inCache": true,
+  "_location": "/cordova-plugin-networkinterface",
+  "_nodeVersion": "9.7.1",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/cordova-plugin-networkinterface_2.0.0_1522275695166_0.18047509668932515"
+  },
+  "_npmUser": {
+    "name": "salbahra",
+    "email": "salbahra@gmail.com"
+  },
+  "_npmVersion": "5.6.0",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "cordova-plugin-networkinterface",
+    "scope": null,
+    "escapedName": "cordova-plugin-networkinterface",
+    "name": "cordova-plugin-networkinterface",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-networkinterface/-/cordova-plugin-networkinterface-2.0.0.tgz",
+  "_shasum": "b26871b75a788c8bdfa1cfcf7a8d67584bfeca59",
+  "_shrinkwrap": null,
+  "_spec": "cordova-plugin-networkinterface",
+  "_where": "C:\\Users\\Fabio\\git\\LEGOCar_App\\CarController\\CarControllerAPK",
+  "author": {
+    "name": "Samer Albahra, tombolaLtd"
+  },
+  "bugs": {
+    "url": "https://github.com/salbahra/cordova-plugin-networkinterface/issues"
+  },
+  "cordova": {
+    "id": "cordova-plugin-networkinterface",
+    "platforms": [
+      "ios",
+      "android",
+      "browser",
+      "windows"
+    ]
+  },
+  "dependencies": {},
+  "description": "This plugin allows your application to retrieve the local wifi address and http proxy information.",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "integrity": "sha512-cvKkzUxhDhU1EYjFsj1wSYXBnK2qoop/7GiDenGPGR9JFHTYgi55HoJFxxBEaiPxH0uiKd97Bc/mw7ywdemjJQ==",
+    "shasum": "b26871b75a788c8bdfa1cfcf7a8d67584bfeca59",
+    "tarball": "https://registry.npmjs.org/cordova-plugin-networkinterface/-/cordova-plugin-networkinterface-2.0.0.tgz",
+    "fileCount": 9,
+    "unpackedSize": 22893
+  },
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.1.0"
+    }
+  ],
+  "gitHead": "1e325426063e208f9482540845e6b3ddb697f653",
+  "homepage": "https://github.com/salbahra/cordova-plugin-networkinterface#readme",
+  "keywords": [
+    "local",
+    "ip",
+    "wifi",
+    "network",
+    "proxy",
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-android",
+    "cordova-browser",
+    "cordova-windows"
+  ],
+  "license": "MIT",
+  "maintainers": [
+    {
+      "name": "salbahra",
+      "email": "salbahra@gmail.com"
+    }
+  ],
+  "name": "cordova-plugin-networkinterface",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/salbahra/cordova-plugin-networkinterface.git"
+  },
+  "version": "2.0.0"
+}

@@ -14,7 +14,7 @@
 		<!-- css -->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
 		<link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css">
-		<link rel="stylesheet" href="googleFont/materialIcons.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 		
 		<!-- cordova -->
 		<script type="text/javascript" src="cordova.js"></script>
@@ -32,6 +32,12 @@
 		<script type="text/javascript" src="node_modules/angular-hammer/angular.hammer.js"></script>
 		<script type="text/javascript" src="app.js"></script>
 		
+		<script type="text/javascript" charset="utf-8">
+		    function bootstrap() {
+		    	xApp.initialize();
+		    }
+		</script>
+		
 		<!-- plugins -->
 		<script type="text/javascript" src="plugins/WifiWizard.js"></script>
 		<script type="text/javascript" src="plugins/screenorientation.js"></script>
@@ -41,9 +47,10 @@
 		<script type="text/javascript" src="indexController.js"></script>
 		<script type="text/javascript" src="startingScreen/startingScreenController.js"></script>
 		<script type="text/javascript" src="settingsScreen/settingsScreenController.js"></script>
+		<script type="text/javascript" src="connectToNetworkDialog/connectToNetworkDialog.js"></script>
 		
 	</head>
-	<body id="LegoCarAppID" ng-cloak style="overflow:hidden;" layout="column" ng-controller="indexController">
+	<body onload="bootstrap()" id="LegoCarAppID" ng-cloak style="overflow:hidden;" layout="column" ng-controller="indexController">
 		
 		<!-- start screen -->
 		<md-content flex ng-if="startScreenActive" id="startingScreen" layout="column" ng-controller="startingScreenController">
@@ -59,27 +66,26 @@
 		<!-- settings screen -->
 		<md-content flex layout="row" ng-controller="settingsScreenController" id="settingsScreen" ng-if="settingsScreenActive">
 			<!-- caricamento -->
-			<md-content flex ng-if="loading" layout="row" layout-align="center center">
+			<div flex ng-if="loading" layout="row" layout-align="center center">
 				<md-progress-circular md-mode="indeterminate" class="md-primary"></md-progress-circular>
-			</md-content>
+			</div>
 			<!-- se non connesso -->
-			<md-content flex ng-if="!connected && !loading" layout="column">
+			<div ng-if="!connected && !loading" layout="column" flex>
 				<md-subheader class="md-primary">
-					<md-button style="margin: 0px;" class="md-primary" ng-if="availableNetworks.length==0" hm-tap="startScan($event)">Cerca reti<md-icon class="material-icons">sync</md-icon></md-button>
+					<md-button style="margin: 0px;" class="md-primary md-raised" hm-tap="startScan($event)">Cerca reti<md-icon class="material-icons">sync</md-icon></md-button>
 				</md-subheader>
-				<md-divider ng-if="availableNetworks.length==0"></md-divider>
-				<md-content layout="column">
-					<div ng-repeat="network in availableNetworks" style="width:100%;" layout="row" layout-align="start center">
-						<md-icon class="material-icons">signal_wifi_{{network.level}}_bar</md-icon>
+				<div ng-repeat="network in availableNetworks">
+					<md-button layout="row" layout-align="start center" style="margin: 3px 0px; width: 100%" hm-tap="connect($event, $index)">
+						<md-icon style="margin-right: 8px" class="material-icons">network_wifi</md-icon>
 						{{network.SSID}}
-						<div flex md-truncate></div>
-						<md-button class="md-raised" layout="row" layout-align="start center" hm-tap="openConnection($event)">
-							Connect
-							<md-icon class="material-icons">wifi_tethering</md-icon>
-						</md-button>
-					</div>
-				</md-content>
-			</md-content>
+						<md-progress-linear flex style="margin: 0px 5px;" md-mode="determinate" value="{{network.level}}"></md-progress-linear>
+						{{network.level}}%
+						<md-icon style="margin-left: 8px" class="material-icons" ng-if="locked($index)">lock</md-icon>
+						<md-icon style="margin-left: 8px" class="material-icons" ng-if="!(locked($index))">lock_open</md-icon>
+					</md-button>
+					<md-divider ng-if="!$last"></md-divider>
+				</div>
+			</div>
 			<!-- se connesso -->
 			<md-content ng-if="connected && !loading">
 				

@@ -23,6 +23,20 @@ module.exports = [
         "clobbers": [
             "cordova.plugins.permissions"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-networkinterface/www/networkinterface.js",
+        "id": "cordova-plugin-networkinterface.networkinterface",
+        "pluginId": "cordova-plugin-networkinterface",
+        "clobbers": [
+            "window.networkinterface"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-networkinterface/src/browser/networkinterfaceProxy.js",
+        "id": "cordova-plugin-networkinterface.networkinterfaceProxy",
+        "pluginId": "cordova-plugin-networkinterface",
+        "runs": true
     }
 ];
 module.exports.metadata = 
@@ -31,7 +45,8 @@ module.exports.metadata =
     "cordova-plugin-whitelist": "1.3.3",
     "cordova-plugin-screen-orientation": "3.0.1",
     "com.pylonproducts.wifiwizard": "0.2.11",
-    "cordova-plugin-android-permissions": "1.0.0"
+    "cordova-plugin-android-permissions": "1.0.0",
+    "cordova-plugin-networkinterface": "2.0.0"
 }
 // BOTTOM OF METADATA
 });

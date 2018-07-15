@@ -4,7 +4,18 @@
     "uninstalled": []
   },
   "config_munge": {
-    "files": {}
+    "files": {
+      "config.xml": {
+        "parents": {
+          "/*": [
+            {
+              "xml": "<feature name=\"networkinterface\"><param name=\"browser-package\" value=\"networkinterface\" /></feature>",
+              "count": 1
+            }
+          ]
+        }
+      }
+    }
   },
   "installed_plugins": {
     "cordova-plugin-whitelist": {
@@ -17,6 +28,9 @@
       "PACKAGE_NAME": "it.tessaro.CarController"
     },
     "cordova-plugin-android-permissions": {
+      "PACKAGE_NAME": "it.tessaro.CarController"
+    },
+    "cordova-plugin-networkinterface": {
       "PACKAGE_NAME": "it.tessaro.CarController"
     }
   },
@@ -45,12 +59,27 @@
       "clobbers": [
         "cordova.plugins.permissions"
       ]
+    },
+    {
+      "file": "plugins/cordova-plugin-networkinterface/www/networkinterface.js",
+      "id": "cordova-plugin-networkinterface.networkinterface",
+      "pluginId": "cordova-plugin-networkinterface",
+      "clobbers": [
+        "window.networkinterface"
+      ]
+    },
+    {
+      "file": "plugins/cordova-plugin-networkinterface/src/browser/networkinterfaceProxy.js",
+      "id": "cordova-plugin-networkinterface.networkinterfaceProxy",
+      "pluginId": "cordova-plugin-networkinterface",
+      "runs": true
     }
   ],
   "plugin_metadata": {
     "cordova-plugin-whitelist": "1.3.3",
     "cordova-plugin-screen-orientation": "3.0.1",
     "com.pylonproducts.wifiwizard": "0.2.11",
-    "cordova-plugin-android-permissions": "1.0.0"
+    "cordova-plugin-android-permissions": "1.0.0",
+    "cordova-plugin-networkinterface": "2.0.0"
   }
 }

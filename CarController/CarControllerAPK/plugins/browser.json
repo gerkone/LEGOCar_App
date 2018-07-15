@@ -18,6 +18,9 @@
     },
     "cordova-plugin-android-permissions": {
       "PACKAGE_NAME": "it.tessaro.CarController"
+    },
+    "cordova-plugin-networkinterface": {
+      "PACKAGE_NAME": "it.tessaro.CarController"
     }
   },
   "dependent_plugins": {}
