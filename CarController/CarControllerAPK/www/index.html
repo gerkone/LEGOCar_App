@@ -56,8 +56,44 @@
 			</md-content>
 			<!-- se non connesso -->
 			<md-content flex ng-if="!connected && !loading" layout="column">
-				<md-subheader flex class="md-primary">
-					<md-button style="margin: 0px;" class="md-primary" ng-if="availableNetworks.length==0" ng-click="startScan()">Cerca reti<md-icon class="material-icons">sync</md-icon></md-button>
+				<md-subheader layout="row" layout-align="center stretch" flex class="md-primary">
+					<div>
+						<md-toolbar class="md-hue-2">
+							<md-menu>
+							      <md-button class="md-icon-button" ng-click="openMenu($mdMenu, $event)">
+							      		<md-icon class="material-icons">more_vert</md-icon>
+							      </md-button>
+							      <md-menu-content width="4">
+								        <md-menu-item>
+									          <md-button ng-click="updateWiFiList()">
+									            	<md-icon class="material-icons"></md-icon>
+									            	Aggiorna
+									          </md-button>
+									    </md-menu-item>
+									    <md-menu-divider></md-menu-divider>
+									    <md-menu-item>
+									          <md-button ng-click="showDefaults()">
+									            	<md-icon class="material-icons"></md-icon>
+									            	Predefiniti
+									          </md-button>
+								        </md-menu-item>
+							      </md-menu-content>
+						    </md-menu>	
+						    Reti Disponibili
+					   </md-toolbar>
+					   <md-list flex>
+					        <md-list-item ng-repeat="wifi in availableNetworks" ng-click="tryConnection()">
+						          <div layout="row" layout-align="start center" class="md-list-item-text" layout="column">
+							          <md-icon ng-if="wifi.level==0" class="material-icons">signal_wifi_0_bar</md-icon>
+							          <md-icon ng-if="wifi.level==1" class="material-icons">signal_wifi_1_bar</md-icon>
+							          <md-icon ng-if="wifi.level==2" class="material-icons">signal_wifi_2_bar</md-icon>
+							          <md-icon ng-if="wifi.level==3" class="material-icons">signal_wifi_3_bar</md-icon>
+							          <md-icon ng-if="wifi.level==4" class="material-icons">signal_wifi_4_bar</md-icon>
+							          {{wifi.SSID}}
+						          </div>
+					        </md-list-item>
+					  </md-list>
+				   </div>
 				</md-subheader>
 			</md-content>
 			<!-- se connesso -->
