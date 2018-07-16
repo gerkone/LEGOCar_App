@@ -25,7 +25,7 @@ function startingScreenController($scope, $timeout, $interval, localStorageServi
 					$scope.setControlsScreenActive(false);
 					$scope.setLoading(false);
 					$scope.showSimpleToast("Non riesco a connettermi! Scegli la rete manualmente");
-				} else {
+				} else if (SSID == '\"'+$scope.defaultKeys.SSID+'\"' && $scope.tries <= 150){
 					arduinoService.check().then(function(response) {
 						if (response.data == "OK") {
 							window.screen.orientation.unlock();
@@ -55,6 +55,9 @@ function startingScreenController($scope, $timeout, $interval, localStorageServi
 						$scope.setLoading(false);
 						$scope.showSimpleToast("Arduino non è su questa rete o c'è stato un'errore");
 					})
+				} else {
+					$scope.setLoading(false);
+					$scope.showSimpleToast("Non sei conesso a nessuna rete");
 				}
 			}, 100, false, SSID);
 		}, function() {

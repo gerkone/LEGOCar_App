@@ -21,6 +21,10 @@ function IndexController($scope, $timeout, $mdToast) {
 		);
 	}
 	
+	$scope.carIp = "";
+	$scope.getCarIp = function() { return $scope.carIp }
+	$scope.setCarIp = function(set) { $scope.carIp = set }
+	
 	$scope.startScreenActive = true;
 	$scope.getStartScreenActive = function() { return $scope.startScreenActive }
 	$scope.setStartScreenActive = function(set) { $scope.startScreenActive = set}

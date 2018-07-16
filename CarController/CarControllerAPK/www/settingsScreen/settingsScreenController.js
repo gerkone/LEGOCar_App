@@ -12,34 +12,37 @@ function settingsScreenController($scope, $timeout, $mdDialog, localStorageServi
 	}
 	
 	$scope.availableNetworks = [];
+	$scope.iterations = 0;
 	
 	$scope.compileNetworkList = function() {
-		$timeout(function() {
-			WifiWizard.getScanResults({numLevels: 101}, function(scannedNetworks) {
-				$timeout(function() {
-					if (scannedNetworks.length == 0) {
-						$scope.showSimpleToast("Non riesco a trovare reti wifi");
-					} else {
-						$scope.availableNetworks = scannedNetworks;
-					}
-					$scope.setLoading(false);
-				}, 100)
-			}, function() {
-				$timeout(function() {
-					$scope.showSimpleToast("Non riesco ad ottenere i risultati dello scan");
-				}, 100)
-			});
-		}, 7500);
+		WifiWizard.getScanResults({numLevels: 101}, function(scannedNetworks) {
+			$timeout(function() {
+				console.log(scannedNetworks);
+				$scope.availableNetworks = scannedNetworks;
+				$scope.iterations++;
+				if ($scope.iterations <= 100) {
+					$scope.compileNetworkList();
+				} else {
+					$scope.showSimpleToast("Scansione terminata");
+					$scope.iterations = 0;
+				}
+			}, 100, false, scannedNetworks)
+		}, function() {
+			$timeout(function() {
+				$scope.showSimpleToast("Non riesco ad ottenere i risultati dello scan");
+			}, 100)
+		});
 	}
 	
 	$scope.startScan = function(event) {
 		WifiWizard.startScan(function() {
-			$scope.permissions.checkPermission($scope.requiredPerms[1], function() {
+			$scope.permissions.checkPermission($scope.requiredPerms[1], function(a) {
 				$timeout(function() {
-					$scope.setLoading(true);
+					console.log(a);
+					$scope.availableNetworks = [];
 					$scope.showSimpleToast("Scansione iniziata...");
 					$scope.compileNetworkList();
-				}, 350);
+				}, 350, false, a);
 			}, function() {
 				$timeout(function() {
 					$scope.showSimpleToast("Non hai tutti i permessi abilitati...");
@@ -58,7 +61,11 @@ function settingsScreenController($scope, $timeout, $mdDialog, localStorageServi
 		    parent: angular.element(document.body),
 		    locals : {network: $scope.availableNetworks[index]},
 		    controller: "connectToNetworkController"
-		})
+		}).then(function(response) {
+			if (response != false) {
+				$scope.setCarIp(response);
+			}
+		}, function() {})
 	}
 	
 }
