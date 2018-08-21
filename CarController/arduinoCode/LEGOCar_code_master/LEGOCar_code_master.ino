@@ -134,14 +134,17 @@ void loop() {
         doGas(command[1]);
         doSteer(command[3], steerCorrectorFactor);
         if(oldGear != command[2]) {
-          if(doGear(command[2])) {
+          bool res = doGear(command[2]);
+          if(res && !idle) {
               esp.write(192); //tutto ok
-            }
+          } else if (!res && !idle) {
+            esp.write(80); //cambio marcia fallito
+          }
         } else {
           if (idle) {
-              esp.write(128); //marcia in attesa
+              esp.write(140); //marcia in attesa
             }else {
-              esp.write(192);
+              esp.write(200);
             }
           }          
       } else { //comandi setup

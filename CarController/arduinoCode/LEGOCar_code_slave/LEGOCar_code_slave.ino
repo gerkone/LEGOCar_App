@@ -4,7 +4,7 @@
 
 
 
-SoftwareSerial master(, );
+SoftwareSerial master(11, 10);
 
 byte gear; // numero 17, 34, 68; gradi: 1 = +1 giro, 2 = -1 giro, 3 = 0 giri
 int oldGear = 1;
@@ -56,9 +56,13 @@ void setup() {
 
 void loop() {
   while(master.available()>=1) {
-      gear = slave.read();
+      gear = master.read();
         if(doGear(gear)) {
           master.write(masterCommands);   
+        } else {
+          masterCommands[0] = oldGear;
+          masterCommands[1] = 32;  //KO
+          master.write(masterCommands);
         }
   }
 }
