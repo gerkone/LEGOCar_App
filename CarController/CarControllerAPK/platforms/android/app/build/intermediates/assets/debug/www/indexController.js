@@ -1,6 +1,6 @@
 app.controller("indexController", IndexController);
 
-function IndexController($scope, $timeout, $mdToast) {
+function IndexController($scope, $timeout, $mdToast, localStorageService) {
 	
 	$scope.permissions = cordova.plugins.permissions;
 	$scope.requiredPerms = [
@@ -9,6 +9,9 @@ function IndexController($scope, $timeout, $mdToast) {
 		$scope.permissions.ACCESS_WIFI_STATE,
 		$scope.permissions.CHANGE_WIFI_STATE
 	];
+	
+	$scope.defaultKeys = localStorageService.get("defaultWiFiKeys");
+	
 	$scope.permissions.requestPermissions($scope.requiredPerms, function() {}, function() {});
 	window.screen.orientation.lock("portrait");
 	

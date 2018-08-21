@@ -7,6 +7,7 @@ function connectToNetworkController($scope, $mdDialog, $timeout, $mdToast, wifiU
 	$scope.network.PWD = "";
 	$scope.loading = false;
 	$scope.setAsFavorite = false;
+	$scope.protectionSystem = network.capabilities;
 	
 	$scope.iterations = 0;
 	$scope.checkIfConnected = function(ip) {

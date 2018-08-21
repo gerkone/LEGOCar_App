@@ -20,8 +20,10 @@ function settingsScreenController($scope, $timeout, $mdDialog, localStorageServi
 				console.log(scannedNetworks);
 				$scope.availableNetworks = scannedNetworks;
 				$scope.iterations++;
-				if ($scope.iterations <= 100) {
+				if ($scope.iterations <= 100 && $scope.iterations != -9) {
 					$scope.compileNetworkList();
+				} else if ($scope.iterations == -9) {
+					$scope.iterations = 0;
 				} else {
 					$scope.showSimpleToast("Scansione terminata");
 					$scope.iterations = 0;
@@ -55,17 +57,26 @@ function settingsScreenController($scope, $timeout, $mdDialog, localStorageServi
 	}
 	
 	$scope.connect = function(event, index) {
-		$mdDialog.show({
-			templateUrl : 'connectToNetworkDialog/connectToNetworkDialog.html',
-			fullscreen : true,
-		    parent: angular.element(document.body),
-		    locals : {network: $scope.availableNetworks[index]},
-		    controller: "connectToNetworkController"
-		}).then(function(response) {
-			if (response != false) {
-				$scope.setCarIp(response);
-			}
-		}, function() {})
+		$scope.iterations = -10;
+		$timeout(function() {
+			$mdDialog.show({
+				templateUrl : 'connectToNetworkDialog/connectToNetworkDialog.html',
+				fullscreen : true,
+			    parent: angular.element(document.body),
+			    locals : {network: $scope.availableNetworks[index]},
+			    controller: "connectToNetworkController"
+			}).then(function(response) {
+				if (response != false) {
+					$scope.setCarIp(response);
+					$scope.setStartScreenActive(false);
+					$scope.setSettingsScreenActive(false);
+					$scope.setConnected(true);
+					$scope.setControlsScreenActive(true);
+					$scope.setLoading(false);
+					$scope.showSimpleToast("Sei connesso ad arduino");
+				}
+			}, function() {})
+		}, 100)
 	}
 	
 }

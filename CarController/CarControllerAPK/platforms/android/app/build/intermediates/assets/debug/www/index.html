@@ -50,6 +50,7 @@
 		<script type="text/javascript" src="startingScreen/startingScreenController.js"></script>
 		<script type="text/javascript" src="settingsScreen/settingsScreenController.js"></script>
 		<script type="text/javascript" src="connectToNetworkDialog/connectToNetworkDialog.js"></script>
+		<script type="text/javascript" src="drivingScreen/drivingScreenController.js"></script>
 		<script type="text/javascript" src="services/arduinoService.js"></script>
 		<script type="text/javascript" src="services/wifiUtils.js"></script>
 		
@@ -94,6 +95,48 @@
 			<md-content ng-if="connected && !loading">
 				
 			</md-content>
+		</md-content>
+		
+		<!-- driving screen -->
+		<md-content flex layout="row" layout-align="start center" ng-controller="drivingScreenController" id="driving-screen" ng-if="controlsScreenActive">
+
+			<div flex="100" layout="row" layout-align="center center" id="logicLayer" style="height: 100%;">
+				<!-- gas section -->
+				<div flex="40" style="height: 100%; background-color: rgb(255,255,255)" id="gasSection">
+					<!-- gas logic section -->
+					<div hm-pan="gas($event, false)" hm-panend="gas($event, true)" id="gasIconLogic" style="position: absolute; left: 0px; top: 0px; width: 40%; height: 100%; z-index: 1; background-color: rgba(255, 0, 0, 0);"></div>
+					<!-- gas icon section -->
+					<md-button class="md-fab" style="z-index: 0; margin: 0px; padding: 0px; position: absolute;" id="gasIcon">
+						<md-icon class="material-icons">whatshot</md-icon>
+					</md-button>
+				</div>
+				<!-- settings section -->
+				<div id="logicLayerDivider" flex="20" layout="column" class="md-primary" layout-align="space-between center" layout-padding style="height: 100%; z-index: 2; box-shadow: 0 0 20px rgba(0,0,0,1);">
+					<md-button class="md-icon-button" hm-tap="">
+						<md-icon style="margin-right: 8px" class="material-icons">add</md-icon>
+					</md-button>
+					<div layout="column" layout-align="center center">
+						<md-button class="md-icon-button" hm-tap="">
+							<md-icon class="material-icons">settings</md-icon>
+						</md-button>
+						<p style="color: green;" ng-if="connected">Connected!</p>
+						<p style="color: red;" ng-if="!connected">Not connected</p>
+					</div>
+					<md-button class="md-icon-button" hm-tap="">
+						<md-icon style="margin-right: 8px" class="material-icons">remove</md-icon>
+					</md-button>
+				</div>
+				<!-- steer section -->
+				<div flex="40" style="height: 100%; background-color: rgb(255,255,255)" id="steerSection">
+					<!-- steer logic section -->
+					<div hm-pan="steer($event, false)" hm-panend="steer($event, true)" id="steerIconLogic" style="position: absolute; right: 0px; top: 0px; width: 40%; height: 100%; z-index: 1; background-color: rgba(255, 0, 0, 0);"></div>
+					<!-- steer icon section -->
+					<md-button class="md-fab" style="z-index: 0; margin: 0px; padding: 0px; position: absolute;" id="steerIcon">
+						<md-icon class="material-icons">code</md-icon>
+					</md-button>
+				</div>
+				
+			</div>		
 		</md-content>
 		
 	</body>
