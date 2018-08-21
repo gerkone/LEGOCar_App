@@ -53,8 +53,10 @@ void drive() {
   //ASPETTO LA RISPOSTA DA ARDUINO
   while (Serial.available()<1) {}
   byte response = Serial.read();
-  if (response >= 128) {
+  if (response >= 160) {
     server.send(200,"text/plain", "OK");
+  } else if (response >= 80){
+    server.send(200,"text/plain", "MEH"); //idle per cambio marcia
   } else {
     server.send(500,"text/plain", "KO");
   }
