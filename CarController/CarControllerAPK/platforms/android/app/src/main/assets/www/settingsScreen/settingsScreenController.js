@@ -11,6 +11,7 @@ function settingsScreenController($scope, $timeout, $mdDialog, localStorageServi
 		return patt.test($scope.availableNetworks[i].capabilities);
 	}
 	
+	$scope.stopRecurring = true;
 	$scope.availableNetworks = [];
 	$scope.iterations = 0;
 	
@@ -73,6 +74,7 @@ function settingsScreenController($scope, $timeout, $mdDialog, localStorageServi
 					$scope.setConnected(true);
 					$scope.setControlsScreenActive(true);
 					$scope.setLoading(false);
+					$scope.stopRecurring = false;
 					$scope.showSimpleToast("Sei connesso ad arduino");
 				}
 			}, function() {})

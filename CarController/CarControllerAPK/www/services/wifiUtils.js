@@ -37,8 +37,9 @@ function wifiUtils($q, $mdToast, $timeout, arduinoService) {
 	
 	this.getIpAddress = function() {
 		return $q(function(resolve, reject) {
-			networkinterface.getWiFiIPAddress(function(address) {
-				var ip = address.ip;
+			DHCPInfo.getDHCPInfo(function(address) {
+				var ip = "192.168.4.1";
+				console.log(address);
 				$timeout(function() {
 					if (typeof ip == 'undefined') {
 						reject("NOT IP");
@@ -57,7 +58,6 @@ function wifiUtils($q, $mdToast, $timeout, arduinoService) {
 	this.disconnect = function(SSID) {
 		return $q(function(resolve, reject) {
 			WifiWizard.disconnectNetwork(SSID, function() {
-				concole.log("disconnesso");
 				resolve();
 			}, function() {
 				concole.log("errore durante la disconnessione");

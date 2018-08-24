@@ -21,6 +21,12 @@
     },
     "cordova-plugin-networkinterface": {
       "PACKAGE_NAME": "it.tessaro.CarController"
+    },
+    "cordova-dhcp-plugin": {
+      "PACKAGE_NAME": "it.tessaro.CarController"
+    },
+    "cordova-plugin-android-wifi-manager": {
+      "PACKAGE_NAME": "it.tessaro.CarController"
     }
   },
   "dependent_plugins": {

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="cordova-dhcp-plugin"
+    version="1.0.2">
+
+    <name>DHCPInfo</name>
+    <description>
+    	Cordova DHCP Plugin
+	</description>
+
+    <license>MIT</license>
+
+    <keywords>cordova,dhcp</keywords>
+
+	<engines>
+		<engine name="cordova" version="&gt;=3.1.0" />
+	</engines>
+
+    <js-module src="www/DHCP.js" name="DHCP">
+        <clobbers target="DHCPInfo" />
+    </js-module>
+   
+
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="DHCPInfo">
+                <param name="ios-package" value="CDVDHCP" onload="true" />
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/CDVDHCP.h" />
+        <source-file src="src/ios/CDVDHCP.m" />
+        <header-file src="src/ios/route.h" />
+     
+    </platform>
+
+	  <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="DHCPInfo" >
+                <param name="android-package" value="org.apache.cordova.android.DHCP"/>
+            </feature>
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+			<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+        </config-file>
+        <source-file src="src/android/DHCP.java" target-dir="src/org/apache/cordova/android" />
+    </platform>
+
+</plugin>

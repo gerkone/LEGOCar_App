@@ -1,107 +1,85 @@
 app.controller("connectToNetworkController", connectToNetworkController);
 
-function connectToNetworkController($scope, $mdDialog, $timeout, $mdToast, arduinoService, network) {
+function connectToNetworkController($scope, $mdDialog, $timeout, $mdToast, wifiUtils, arduinoService, localStorageService, network) {
 	
 	$scope.network = network;
 	$scope.showPassword = false;
 	$scope.network.PWD = "";
 	$scope.loading = false;
 	$scope.setAsFavorite = false;
-	$scope.tries = 0;
+	$scope.protectionSystem = network.capabilities;
 	
-	$scope.waitForConnection = function() {
-		WifiWizard.getCurrentSSID(function(SSID) {
-			//se ottiene l'ssid
-			$timeout(function() {
-				if (SSID != '\"'+$scope.network.SSID+'\"' && $scope.tries <= 150) {
-					//se non si è ancora connesso
-					$scope.tries++;
-					$scope.waitForConnection();
-				} else if (SSID != '\"'+$scope.network.SSID+'\"' && $scope.tries > 150) {
-					//se scade il tempo per la connessione
+	$scope.iterations = 0;
+	$scope.checkIfConnected = function(ip) {
+		wifiUtils.getCurrentSSID().then(function(SSID) {
+			if (SSID == $scope.network.SSID) {
+				wifiUtils.checkArduino(ip, false).then(function(IP) { //set to false per uscire dalla modalità test
+					if ($scope.setAsFavorite) {
+						localStorageService.set("defaultWiFiKeys", $scope.network);
+					}
 					$scope.loading = false;
-					$scope.showSimpleToast("Non riesco a connettermi! Scegli la rete manualmente");
-				} else {
-					//se va tutto bene
-					arduinoService.check().then(function(response) {
-						if (response.data == "OK") {
-							$scope.loading = false;
-							$mdDialog.hide(true);
-							$mdToast.show(
-								$mdToast.simple()
-									.textContent("Connesso!")
-								    .position("top right")
-								    .hideDelay(3000)
-							);
-						} else {
-							$scope.loading = false;
-							$mdDialog.hide(false);
-							$mdToast.show(
-								$mdToast.simple()
-									.textContent("Arduino non è su questa rete wifi!")
-								    .position("top right")
-								    .hideDelay(3000)
-							);
-						}
-					}, function(response) {
-						$scope.loading = false;
-						$mdDialog.hide(false);
+					$mdDialog.hide(IP);
+				}, function(exist) {
+					if (exist) {
 						$mdToast.show(
 							$mdToast.simple()
-								.textContent("Arduino non è su questa rete wifi o c'è stato un'errore!")
-							    .position("top right")
-							    .hideDelay(3000)
+								.textContent("Risposta del server non corretta")
+								.position("top right")
+								.hideDelay(3000)
 						);
-					})
+						wifiUtils.disconnect($scope.network.SSID);
+						$scope.loading = false;
+						$mdDialog.hide(false);
+					} else {
+						$mdToast.show(
+							$mdToast.simple()
+								.textContent("Il server non risponde")
+								.position("top right")
+								.hideDelay(3000)
+						);
+						wifiUtils.disconnect($scope.network.SSID);
+						$scope.loading = false;
+						$mdDialog.hide(false);
+					}
+				})
+			} else {
+				$scope.iterations++;
+				$scope.waitForConnection();
+			}
+		}, function() {
+			$scope.iterations++;
+			$scope.waitForConnection();
+		})
+	}
+	
+	$scope.waitForConnection = function() {
+		$timeout(function() {
+			wifiUtils.getIpAddress().then(function(ip) {
+				$scope.checkIfConnected(ip);
+			}, function(error) {
+				if ($scope.iterations <= 100) {
+					$scope.iterations++;
+					$scope.waitForConnection();
+				} else {
+					$mdToast.show(
+						$mdToast.simple()
+							.textContent("Non riesco a connettermi al wifi")
+							.position("top right")
+							.hideDelay(3000)
+					);
+					wifiUtils.disconnect($scope.network.SSID);
+					$scope.loading = false;
 				}
-			}, 100, false, SSID);
-		}, function(a) {
-			//se non ottiene l'ssid
-			$timeout(function() {
-				$scope.loading = false;
-				console.log(a);
-				$scope.showSimpleToast("Non riesco ad ottenere l'SSID corrente");
-			}, 100, false, a)
-		});
+			})
+		}, 100)
 	}
 	
 	$scope.tryToConnect = function(event) {
 		$scope.loading = true;
-		WifiWizard.addNetwork(WifiWizard.formatWPAConfig($scope.network.SSID, $scope.network.PWD), function() {
-			//se aggiunge la rete
-			$timeout(function() {
-				WifiWizard.connectNetwork($scope.network.SSID, function(a) {
-					//se si connette
-					$timeout(function() {
-						$scope.tries++;
-						$scope.waitForConnection();
-					}, 100);
-				}, function(a) {
-					//se non si connette
-					$timeout(function() {
-						console.log(a);
-						$scope.loading = false;
-						$mdToast.show(
-								$mdToast.simple()
-									.textContent("Errore nella connessione!")
-								    .position("top right")
-								    .hideDelay(3000)
-						);
-					}, 100, false, a)
-				});
-			}, 100)
-		}, function(a) {
-			//se non aggiunge la rete
-			$timeout(function() {
-				console.log(a);
-				$scope.loading = false;
-				$mdToast.show(
-						$mdToast.simple()
-							.textContent("Errore nell'aggiunta della rete!")
-						    .position("top right")
-						    .hideDelay(3000)
-				);
-			}, 100, false, a)
+		wifiUtils.connectToNetwork($scope.network.SSID, $scope.network.PWD).then(function() {
+			$scope.waitForConnection();
+		}, function(reason) {
+			$scope.loading = false;
 		});
 	}
 	

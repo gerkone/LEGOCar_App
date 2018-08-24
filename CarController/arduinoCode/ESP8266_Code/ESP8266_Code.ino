@@ -54,13 +54,13 @@ void drive() {
   while (Serial.available()<1) {}
   byte response = Serial.read();
   if (response >= 180) {
-    server.send(200,"text/plain", "OK");
+    server.send(200);
   } else if (response >= 120) {
-    server.send(201,"text/plain", "GI"); //idle per cambio marcia
+    server.send(201); //idle per cambio marcia
   } else if (response >= 60){
-    server.send(202,"text/plain", "GF"); //cambio di marcia fallito
+    server.send(202); //cambio di marcia fallito
   } else {
-    server.send(500,"text/plain", "KO");
+    server.send(500);
   }
   
 }
@@ -99,16 +99,13 @@ void setup() {
   gas = 0;
   gear = 1;
 
-  Serial.print("Setting soft-AP ... ");
   WiFi.softAP(ssid, password, 9) ? "Ready" : "Failed!";
   IPAddress assignedIP = WiFi.softAPIP();
-  Serial.print("Car IP address: ");
   Serial.println(assignedIP);
   server.on("/check", check);
   server.on("/drive", drive);
   server.on("/setupCar", setupCar);
   server.begin();
-  Serial.println("Car server started!");
   
 }
 

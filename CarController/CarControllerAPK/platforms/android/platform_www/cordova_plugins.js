@@ -37,6 +37,22 @@ module.exports = [
     "clobbers": [
       "window.networkinterface"
     ]
+  },
+  {
+    "id": "cordova-dhcp-plugin.DHCP",
+    "file": "plugins/cordova-dhcp-plugin/www/DHCP.js",
+    "pluginId": "cordova-dhcp-plugin",
+    "clobbers": [
+      "DHCPInfo"
+    ]
+  },
+  {
+    "id": "cordova-plugin-android-wifi-manager.WifiManager",
+    "file": "plugins/cordova-plugin-android-wifi-manager/www/index.js",
+    "pluginId": "cordova-plugin-android-wifi-manager",
+    "clobbers": [
+      "cordova.plugins.WifiManager"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -47,7 +63,9 @@ module.exports.metadata =
   "cordova-plugin-screen-orientation": "3.0.1",
   "com.pylonproducts.wifiwizard": "0.2.11",
   "cordova-plugin-android-permissions": "1.0.0",
-  "cordova-plugin-networkinterface": "2.0.0"
+  "cordova-plugin-networkinterface": "2.0.0",
+  "cordova-dhcp-plugin": "1.0.2",
+  "cordova-plugin-android-wifi-manager": "1.0.0"
 };
 // BOTTOM OF METADATA
 });

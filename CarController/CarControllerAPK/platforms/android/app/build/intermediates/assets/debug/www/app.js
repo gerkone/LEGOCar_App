@@ -8,15 +8,10 @@ app.config(function(localStorageServiceProvider, $mdThemingProvider){
 	$mdThemingProvider.setDefaultTheme('default-dark');
 	$mdThemingProvider.alwaysWatchTheme(true);
 	
-	$mdThemingProvider.theme('default')
-	    .primaryPalette('deep-orange')
-	    .accentPalette('red')
-	    .warnPalette('blue')
-	
 	$mdThemingProvider.theme('default-dark')
 	    .primaryPalette('deep-orange')
-	    .accentPalette('red')
-	    .warnPalette('indigo')
+	    .accentPalette('yellow')
+	    .warnPalette('yellow')
 	    .dark();
 });
 //inizializzazione cordova

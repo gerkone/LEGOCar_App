@@ -5,7 +5,7 @@
 
 SoftwareSerial esp(5, 6);
 
-SoftwareSerial slave(, ); //porta seriale per arduino usato per cambio marce
+SoftwareSerial slave(9, 10); //porta seriale per arduino usato per cambio marce
 
 byte command[] = {0, 0, 0, 0, 0};
 byte slaveCommands[] = {0, 0};
@@ -28,7 +28,6 @@ byte gearSpeedDown = 100; //velocità di cambiata in discesa tra 0 e 100
 
 int oldGear = 1;
 int str = 64;
-Stepper gearShifter = Stepper(str, 8, 9, 10, 11);
 
 Servo steerServo;
 
@@ -36,8 +35,7 @@ void setup() {
 
   Serial.begin(9600);
   esp.begin(115200); 
-  steerServo.attach(3);
-  gearShifter.setSpeed(10);
+  steerServo.attach(11);
 }
 void doGas(byte g) {
   //Accelerare

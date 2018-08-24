@@ -6,6 +6,7 @@ function startingScreenController($scope, $timeout, $interval, localStorageServi
 	$scope.getLoading = function() { return $scope.loading }
 	$scope.setLoading = function(set) { $scope.loading = set }
 	
+	$scope.stopRecurring = true;
 	$scope.iterations = 0;
 	
 	$scope.checkIfConnected = function(ip) {
@@ -19,6 +20,7 @@ function startingScreenController($scope, $timeout, $interval, localStorageServi
 					$scope.setConnected(true);
 					$scope.setControlsScreenActive(true);
 					$scope.setLoading(false);
+					$scope.stopRecurring = false;
 					$scope.showSimpleToast("Sei connesso ad arduino");
 				}, function(exist) {
 					window.screen.orientation.unlock();

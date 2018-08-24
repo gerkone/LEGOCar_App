@@ -1,0 +1,57 @@
+{
+  "_from": "cordova-plugin-android-wifi-manager",
+  "_id": "cordova-plugin-android-wifi-manager@1.2.1",
+  "_inBundle": false,
+  "_integrity": "sha512-Jrw0kGg21eQXTSl0I/zUsR5e0W9YQkPiWzikebcdN0dQya2MbAgzQ+UiedBSd+4TmkY4rRV2hv4SSr4ZtLFy0g==",
+  "_location": "/cordova-plugin-android-wifi-manager",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "cordova-plugin-android-wifi-manager",
+    "name": "cordova-plugin-android-wifi-manager",
+    "escapedName": "cordova-plugin-android-wifi-manager",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-android-wifi-manager/-/cordova-plugin-android-wifi-manager-1.2.1.tgz",
+  "_shasum": "0b00d582253202b91efe3470c5aee2e36540ea69",
+  "_spec": "cordova-plugin-android-wifi-manager",
+  "_where": "C:\\Users\\Fabio\\git\\LEGOCar_App\\CarController\\CarControllerAPK",
+  "author": {
+    "name": "Mirza Kapetanovic"
+  },
+  "bugs": {
+    "url": "https://github.com/kapetan/cordova-plugin-android-wifi-manager/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-android-wifi-manager",
+    "platforms": [
+      "android"
+    ]
+  },
+  "dependencies": {},
+  "deprecated": false,
+  "description": "Cordova plugin for accessing Android WifiManager",
+  "devDependencies": {
+    "standard": "^10.0.3"
+  },
+  "homepage": "https://github.com/kapetan/cordova-plugin-android-wifi-manager#readme",
+  "license": "ISC",
+  "main": "index.js",
+  "name": "cordova-plugin-android-wifi-manager",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kapetan/cordova-plugin-android-wifi-manager.git"
+  },
+  "scripts": {
+    "test": "standard --verbose"
+  },
+  "version": "1.2.1"
+}

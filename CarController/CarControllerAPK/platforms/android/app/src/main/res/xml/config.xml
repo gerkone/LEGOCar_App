@@ -17,6 +17,13 @@
     <feature name="networkinterface">
         <param name="android-package" value="com.albahra.plugin.networkinterface.networkinterface" />
     </feature>
+    <feature name="DHCPInfo">
+        <param name="android-package" value="org.apache.cordova.android.DHCP" />
+    </feature>
+    <feature name="WifiManagerPlugin">
+        <param name="android-package" value="dk.kapetanovic.wifimanager.WifiManagerPlugin" />
+        <param name="onload" value="true" />
+    </feature>
     <name>CarController</name>
     <description>
         A controller app for the lego record breaking car.
@@ -34,5 +41,6 @@
     <allow-intent href="geo:*" />
     <allow-intent href="market:*" />
     <preference name="loglevel" value="DEBUG" />
+    <preference name="android-minSdkVersion" value="23" />
     <preference name="Fullscreen" value="true" />
 </widget>

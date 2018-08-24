@@ -43,6 +43,7 @@
 		<script type="text/javascript" src="plugins/screenorientation.js"></script>
 		<script type="text/javascript" src="plugins/permissions.js"></script>
 		<script type="text/javascript" src="plugins/networkinterface.js"></script>
+		<script type="text/javascript" src="plugins/DHCP.js"></script>
 		
 		
 		<!-- controllers -->
@@ -60,11 +61,11 @@
 		<!-- start screen -->
 		<md-content flex ng-if="startScreenActive" id="startingScreen" layout="column" ng-controller="startingScreenController">
 			<div flex="75" id="logoDiv" layout="column" layout-align="center center">
-				<img flex="75" src="images/logo.png"/>
+				<img flex="65" src="images/logo.png"/>
 			</div>
 			<div flex="35" id="buttonDiv" layout="column" layout-align="center center">
-				<md-button class="md-raised md-warn" ng-if="!loading" hm-tap="begin($event)">Begin</md-button>
-				<md-progress-circular md-mode="indeterminate" class="md-warn" ng-if="loading"></md-progress-circular>
+				<md-button class="md-raised md-primary" ng-if="!loading" hm-tap="begin($event)">Begin</md-button>
+				<md-progress-circular md-mode="indeterminate" class="md-primary" ng-if="loading"></md-progress-circular>
 			</div>
 		</md-content>
 		
@@ -104,34 +105,35 @@
 				<!-- gas section -->
 				<div flex="40" style="height: 100%; background-color: rgb(255,255,255)" id="gasSection">
 					<!-- gas logic section -->
-					<div hm-pan="gas($event, false)" hm-panend="gas($event, true)" id="gasIconLogic" style="position: absolute; left: 0px; top: 0px; width: 40%; height: 100%; z-index: 1; background-color: rgba(255, 0, 0, 0);"></div>
+					<div id="gasIconLogic" style="position: absolute; left: 0px; top: 0px; width: 40%; height: 100%; z-index: 1; background-color: rgba(255, 0, 0, 0);"></div>
 					<!-- gas icon section -->
-					<md-button class="md-fab" style="z-index: 0; margin: 0px; padding: 0px; position: absolute;" id="gasIcon">
+					<md-button class="md-fab md-primary" style="z-index: 0; margin: 0px; padding: 0px; position: absolute;" id="gasIcon">
 						<md-icon class="material-icons">whatshot</md-icon>
 					</md-button>
 				</div>
 				<!-- settings section -->
 				<div id="logicLayerDivider" flex="20" layout="column" class="md-primary" layout-align="space-between center" layout-padding style="height: 100%; z-index: 2; box-shadow: 0 0 20px rgba(0,0,0,1);">
-					<md-button class="md-icon-button" hm-tap="">
-						<md-icon style="margin-right: 8px" class="material-icons">add</md-icon>
+					<md-button class="md-icon-button md-primary" id="gearUpButton" ng-disabled="gearDisable">
+						<md-icon style="margin-right: 8px" class="material-icons" id="gearUpIcon">add</md-icon>
 					</md-button>
 					<div layout="column" layout-align="center center">
-						<md-button class="md-icon-button" hm-tap="">
-							<md-icon class="material-icons">settings</md-icon>
+						<md-button class="md-icon-button md-primary" id="settingsButton">
+							<md-icon class="material-icons" id="settingsIcon">settings</md-icon>
 						</md-button>
 						<p style="color: green;" ng-if="connected">Connected!</p>
-						<p style="color: red;" ng-if="!connected">Not connected</p>
+						<p style="color: red;" ng-if="!connected">Not connected...</p>
+						{{gear}}
 					</div>
-					<md-button class="md-icon-button" hm-tap="">
-						<md-icon style="margin-right: 8px" class="material-icons">remove</md-icon>
+					<md-button class="md-icon-button md-primary" id="gearDownButton" ng-disabled="gearDisable">
+						<md-icon style="margin-right: 8px" class="material-icons" id="gearDownButton">remove</md-icon>
 					</md-button>
 				</div>
 				<!-- steer section -->
 				<div flex="40" style="height: 100%; background-color: rgb(255,255,255)" id="steerSection">
 					<!-- steer logic section -->
-					<div hm-pan="steer($event, false)" hm-panend="steer($event, true)" id="steerIconLogic" style="position: absolute; right: 0px; top: 0px; width: 40%; height: 100%; z-index: 1; background-color: rgba(255, 0, 0, 0);"></div>
+					<div id="steerIconLogic" style="position: absolute; right: 0px; top: 0px; width: 40%; height: 100%; z-index: 1; background-color: rgba(255, 0, 0, 0);"></div>
 					<!-- steer icon section -->
-					<md-button class="md-fab" style="z-index: 0; margin: 0px; padding: 0px; position: absolute;" id="steerIcon">
+					<md-button class="md-fab md-primary" style="z-index: 0; margin: 0px; padding: 0px; position: absolute;" id="steerIcon">
 						<md-icon class="material-icons">code</md-icon>
 					</md-button>
 				</div>

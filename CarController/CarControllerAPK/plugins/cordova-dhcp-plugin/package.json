@@ -1,0 +1,57 @@
+{
+  "_from": "cordova-dhcp-plugin",
+  "_id": "cordova-dhcp-plugin@1.0.2",
+  "_inBundle": false,
+  "_integrity": "sha1-WBEK2QNuv0XWUXk/YyNw7s2HdpA=",
+  "_location": "/cordova-dhcp-plugin",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "cordova-dhcp-plugin",
+    "name": "cordova-dhcp-plugin",
+    "escapedName": "cordova-dhcp-plugin",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-dhcp-plugin/-/cordova-dhcp-plugin-1.0.2.tgz",
+  "_shasum": "58110ad9036ebf45d651793f632370eecd877690",
+  "_spec": "cordova-dhcp-plugin",
+  "_where": "C:\\Users\\Fabio\\git\\LEGOCar_App\\CarController\\CarControllerAPK",
+  "author": {
+    "name": "HSC"
+  },
+  "bugs": {
+    "url": "https://github.com/hsccorp/cordova-dhcp-plugin/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-dhcp-plugin",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "deprecated": false,
+  "description": "Cordova DHCP Plugin",
+  "homepage": "https://github.com/hsccorp/cordova-dhcp-plugin#readme",
+  "keywords": [
+    "cordova",
+    "dhcp",
+    "dhcpinfo",
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "license": "MIT",
+  "name": "cordova-dhcp-plugin",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hsccorp/cordova-dhcp-plugin.git"
+  },
+  "version": "1.0.2"
+}

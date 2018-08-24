@@ -4,7 +4,7 @@
 
 
 
-SoftwareSerial master(11, 10);
+SoftwareSerial master(5, 6);
 
 byte gear; // numero 17, 34, 68; gradi: 1 = +1 giro, 2 = -1 giro, 3 = 0 giri
 int oldGear = 1;

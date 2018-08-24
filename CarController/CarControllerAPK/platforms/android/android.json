@@ -10,20 +10,32 @@
           "/manifest": [
             {
               "xml": "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\" />",
-              "count": 1
+              "count": 2
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\" />",
-              "count": 1
+              "count": 2
             },
             {
               "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
+              "count": 2
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\" />",
               "count": 1
             }
           ],
           "/*": [
             {
               "xml": "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\" />",
+              "count": 2
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
               "count": 1
             }
           ]
@@ -51,6 +63,18 @@
             {
               "xml": "<feature name=\"networkinterface\"><param name=\"android-package\" value=\"com.albahra.plugin.networkinterface.networkinterface\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"DHCPInfo\"><param name=\"android-package\" value=\"org.apache.cordova.android.DHCP\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<preference name=\"android-minSdkVersion\" value=\"23\" />",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"WifiManagerPlugin\"><param name=\"android-package\" value=\"dk.kapetanovic.wifimanager.WifiManagerPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -74,6 +98,12 @@
       "PACKAGE_NAME": "it.tessaro.CarController"
     },
     "cordova-plugin-networkinterface": {
+      "PACKAGE_NAME": "it.tessaro.CarController"
+    },
+    "cordova-dhcp-plugin": {
+      "PACKAGE_NAME": "it.tessaro.CarController"
+    },
+    "cordova-plugin-android-wifi-manager": {
       "PACKAGE_NAME": "it.tessaro.CarController"
     }
   },
@@ -116,6 +146,22 @@
       "clobbers": [
         "window.networkinterface"
       ]
+    },
+    {
+      "id": "cordova-dhcp-plugin.DHCP",
+      "file": "plugins/cordova-dhcp-plugin/www/DHCP.js",
+      "pluginId": "cordova-dhcp-plugin",
+      "clobbers": [
+        "DHCPInfo"
+      ]
+    },
+    {
+      "id": "cordova-plugin-android-wifi-manager.WifiManager",
+      "file": "plugins/cordova-plugin-android-wifi-manager/www/index.js",
+      "pluginId": "cordova-plugin-android-wifi-manager",
+      "clobbers": [
+        "cordova.plugins.WifiManager"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -124,6 +170,8 @@
     "cordova-plugin-screen-orientation": "3.0.1",
     "com.pylonproducts.wifiwizard": "0.2.11",
     "cordova-plugin-android-permissions": "1.0.0",
-    "cordova-plugin-networkinterface": "2.0.0"
+    "cordova-plugin-networkinterface": "2.0.0",
+    "cordova-dhcp-plugin": "1.0.2",
+    "cordova-plugin-android-wifi-manager": "1.0.0"
   }
 }
