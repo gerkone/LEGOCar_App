@@ -7,12 +7,6 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "it.tessaro.CarController"
-    },
-    "cordova-plugin-screen-orientation": {
-      "PACKAGE_NAME": "it.tessaro.CarController"
-    },
     "com.pylonproducts.wifiwizard": {
       "PACKAGE_NAME": "it.tessaro.CarController"
     },
@@ -20,6 +14,12 @@
       "PACKAGE_NAME": "it.tessaro.CarController"
     },
     "cordova-plugin-networkinterface": {
+      "PACKAGE_NAME": "it.tessaro.CarController"
+    },
+    "cordova-plugin-screen-orientation": {
+      "PACKAGE_NAME": "it.tessaro.CarController"
+    },
+    "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "it.tessaro.CarController"
     },
     "cordova-dhcp-plugin": {

@@ -5,11 +5,10 @@ function arduinoService($http, $q, $mdToast) {
 	this.check = function(carIp) {
 		var address = "http://"+carIp+"/check";
 		console.log(address);
-		return $http.({
+		return $http({
 				url: "http://"+carIp+":80/check", 
 			    method: "GET"
-			});
-		}
+		});
 	}
 	
 	this.drive = function(carIp, drive, steer, gear) {

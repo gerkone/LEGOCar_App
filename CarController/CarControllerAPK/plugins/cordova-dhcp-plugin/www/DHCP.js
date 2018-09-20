@@ -12,4 +12,6 @@ DHCPInfo.getDHCPInfo = function(success, fail) {
     cordova.exec(success, fail, "DHCPInfo", "getDHCP", []);
 };
 
+module.exports = DHCPInfo;
+
 

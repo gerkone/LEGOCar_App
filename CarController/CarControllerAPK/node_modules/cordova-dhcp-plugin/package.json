@@ -1,19 +1,19 @@
 {
-  "_from": "cordova-dhcp-plugin",
+  "_from": "cordova-dhcp-plugin@^1.0.2",
   "_id": "cordova-dhcp-plugin@1.0.2",
   "_inBundle": false,
   "_integrity": "sha1-WBEK2QNuv0XWUXk/YyNw7s2HdpA=",
   "_location": "/cordova-dhcp-plugin",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "range",
     "registry": true,
-    "raw": "cordova-dhcp-plugin",
+    "raw": "cordova-dhcp-plugin@^1.0.2",
     "name": "cordova-dhcp-plugin",
     "escapedName": "cordova-dhcp-plugin",
-    "rawSpec": "",
+    "rawSpec": "^1.0.2",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "^1.0.2"
   },
   "_requiredBy": [
     "#USER",
@@ -21,7 +21,7 @@
   ],
   "_resolved": "https://registry.npmjs.org/cordova-dhcp-plugin/-/cordova-dhcp-plugin-1.0.2.tgz",
   "_shasum": "58110ad9036ebf45d651793f632370eecd877690",
-  "_spec": "cordova-dhcp-plugin",
+  "_spec": "cordova-dhcp-plugin@^1.0.2",
   "_where": "C:\\Users\\Fabio\\git\\LEGOCar_App\\CarController\\CarControllerAPK",
   "author": {
     "name": "HSC"

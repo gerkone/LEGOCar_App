@@ -37,8 +37,9 @@ function wifiUtils($q, $mdToast, $timeout, arduinoService) {
 	
 	this.getIpAddress = function() {
 		return $q(function(resolve, reject) {
-			wifi.getInfo(function(address) {
-				var ip = address.ip;
+			networkInterface.getWiFiIPAddress(function(address) {
+				var ip = "192.168.4.1";
+				console.log(address);
 				$timeout(function() {
 					if (typeof ip == 'undefined') {
 						reject("NOT IP");

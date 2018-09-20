@@ -1,4 +1,4 @@
-#Thu Aug 23 00:52:17 CEST 2018
+#Sun Aug 26 17:10:19 CEST 2018
 base.0=C\:\\Users\\Fabio\\git\\LEGOCar_App\\CarController\\CarControllerAPK\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
 renamed.0=classes.dex
 file.0=C\:\\Users\\Fabio\\git\\LEGOCar_App\\CarController\\CarControllerAPK\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0\\classes.dex

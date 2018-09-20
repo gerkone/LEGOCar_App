@@ -13,7 +13,7 @@ function connectToNetworkController($scope, $mdDialog, $timeout, $mdToast, wifiU
 	$scope.checkIfConnected = function(ip) {
 		wifiUtils.getCurrentSSID().then(function(SSID) {
 			if (SSID == $scope.network.SSID) {
-				wifiUtils.checkArduino(ip, true).then(function(IP) { //set to false per uscire dalla modalità test
+				wifiUtils.checkArduino(ip, false).then(function(IP) { //set to false per uscire dalla modalità test
 					if ($scope.setAsFavorite) {
 						localStorageService.set("defaultWiFiKeys", $scope.network);
 					}

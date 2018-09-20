@@ -37,12 +37,14 @@ public class DHCP extends CordovaPlugin {
 
     }
 
-    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) {
+    public boolean execute(String action, JSONArray args,
+            CallbackContext callbackContext) {
         JSONObject r = new JSONObject();
         try {
+
             if (action.equals("getDHCP")) {
                 JSONObject ip = getRouterIPAddress();
-                callbackContext.success(JSONObject.toString());
+                callbackContext.success(ip);
                 return true;
             } 
             else {
@@ -61,7 +63,8 @@ public class DHCP extends CordovaPlugin {
     }
 
     private JSONObject getRouterIPAddress() {
-        WifiManager wifiManager = (WifiManager) cordova.getActivity().getSystemService(Context.WIFI_SERVICE);
+        WifiManager wifiManager = (WifiManager) cordova.getActivity()
+                .getSystemService(Context.WIFI_SERVICE);
         DhcpInfo dhcp = wifiManager.getDhcpInfo();
         JSONObject dhcpData = new JSONObject();
         try {
@@ -70,8 +73,9 @@ public class DHCP extends CordovaPlugin {
             dhcpData.put("netmask", formatIP(dhcp.netmask));
             dhcpData.put("dns1", formatIP(dhcp.dns1));
             dhcpData.put("dns2", formatIP(dhcp.dns2));
-            dhcpData.put("Ipv6", "Disabled");
-        } catch (JSONException e) {
+            dhcpData.put("Ipv6", ipv6Address(false));
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return dhcpData;

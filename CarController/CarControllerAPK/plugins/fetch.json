@@ -50,7 +50,7 @@
   "cordova-dhcp-plugin": {
     "source": {
       "type": "registry",
-      "id": "cordova-dhcp-plugin"
+      "id": "cordova-dhcp-plugin@^1.0.2"
     },
     "is_top_level": true,
     "variables": {}
@@ -66,7 +66,7 @@
   "cordova-plugin-android-wifi-manager": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-android-wifi-manager"
+      "id": "cordova-plugin-android-wifi-manager@^1.2.1"
     },
     "is_top_level": true,
     "variables": {}
